@@ -166,7 +166,7 @@
     .banks-head{font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:16px;text-align:center}
     .banks-flex{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
     .b-tag{background:transparent;border:none;padding:10px 16px;border-radius:6px;font-size:.82rem;font-weight:600;color:var(--navy);display:flex;align-items:center;justify-content:center}
-    .b-tag img{height:32px;width:auto;max-width:110px;object-fit:contain;display:block}
+    .b-tag img{height:54px;width:auto;max-width:140px;object-fit:contain;display:block}
 
     /* GUARANTEES */
     .guar-sec{background:var(--off-white)}
@@ -181,7 +181,7 @@
     .brands-s{font-size:.86rem;color:var(--gray);margin-bottom:26px}
     .brands-flex{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
     .br-chip{background:transparent;border:none;padding:14px 22px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.86rem;color:var(--navy);display:flex;align-items:center;justify-content:center}
-    .br-chip img{height:36px;width:auto;max-width:120px;object-fit:contain;display:block}
+    .br-chip img{height:60px;width:auto;max-width:150px;object-fit:contain;display:block}
 
     /* TESTIMONIALS */
     .testi-sec{background:var(--navy-dark)}
@@ -306,6 +306,391 @@
       .ts-v{font-size:1.1rem}
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>/* === CALCULADORA SOLAR === */
+
+    /* ============================================================
+       VARIABLES EDITABLES
+       ============================================================ */
+    :root {
+      --navy:        #0F2544;
+      --navy-mid:    #1B3A6B;
+      --blue:        #2B7BC8;
+      --blue-lt:     #4A9DE0;
+      --orange:      #E8541A;
+      --orange-lt:   #F5763A;
+      --green:       #16A34A;
+      --green-bg:    #DCFCE7;
+      --white:       #FFFFFF;
+      --off-white:   #F7F9FC;
+      --gray-lt:     #E8EDF5;
+      --gray:        #8695B0;
+      --gray-dark:   #4A5568;
+      --shadow-sm:   0 2px 12px rgba(15,37,68,.07);
+      --shadow-md:   0 8px 32px rgba(15,37,68,.11);
+      --shadow-lg:   0 20px 60px rgba(15,37,68,.16);
+      --radius:      16px;
+      --radius-sm:   10px;
+      --font:        'Plus Jakarta Sans', sans-serif;
+
+      /* Precios por panel según tipo de techo — EDITABLES */
+      --precio-lamina-min: 3300;
+      --precio-lamina-max: 3700;
+      --precio-losa-min:   3700;
+      --precio-losa-max:   4200;
+      --precio-teja-min:   4300;
+      --precio-teja-max:   4500;
+
+      /* Número de WhatsApp — EDITABLE */
+      --whatsapp: "50230821405";
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
+    html { scroll-behavior:smooth }
+    body { font-family:var(--font); background:var(--off-white); color:var(--navy); -webkit-font-smoothing:antialiased }
+
+    /* ============================================================
+       SECCIÓN WRAPPER
+       ============================================================ */
+    .calc-section {
+      padding: 96px 24px;
+      background: var(--off-white);
+      position: relative;
+      overflow: hidden;
+    }
+    .calc-section::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(43,123,200,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .calc-section::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,84,26,.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .calc-container { max-width: 760px; margin: 0 auto; position: relative; z-index: 1 }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .calc-header { text-align: center; margin-bottom: 52px }
+    .calc-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(43,123,200,.1); color: var(--blue);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: .8rem; font-weight: 700; letter-spacing: .8px;
+      text-transform: uppercase; margin-bottom: 18px;
+    }
+    .calc-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--blue) }
+    .calc-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; line-height: 1.15;
+      color: var(--navy); margin-bottom: 14px;
+      letter-spacing: -.5px;
+    }
+    .calc-header h2 span { color: var(--orange) }
+    .calc-header p {
+      font-size: 1rem; color: var(--gray-dark);
+      line-height: 1.72; max-width: 480px; margin: 0 auto;
+    }
+
+    /* ============================================================
+       PROGRESS BAR
+       ============================================================ */
+    .progress-wrap {
+      display: flex; align-items: center; gap: 0;
+      margin-bottom: 36px; background: var(--white);
+      border-radius: var(--radius); padding: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+    .progress-step {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      gap: 10px; padding: 14px 20px; border-radius: 12px;
+      font-size: .88rem; font-weight: 600; color: var(--gray);
+      transition: all .3s ease; cursor: default;
+    }
+    .progress-step.active {
+      background: var(--navy); color: var(--white);
+      box-shadow: 0 4px 16px rgba(15,37,68,.2);
+    }
+    .progress-step.done {
+      background: var(--green-bg); color: var(--green);
+    }
+    .step-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; font-weight: 800; flex-shrink: 0;
+      background: rgba(255,255,255,.15);
+    }
+    .progress-step.active .step-num { background: rgba(255,255,255,.2) }
+    .progress-step.done .step-num { background: var(--green); color: var(--white) }
+    .progress-divider {
+      width: 1px; height: 32px; background: var(--gray-lt); flex-shrink: 0;
+    }
+
+    /* ============================================================
+       CARD BASE
+       ============================================================ */
+    .calc-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      padding: 44px 44px;
+      animation: fadeUp .4s ease both;
+    }
+    @media(max-width:600px){ .calc-card { padding: 28px 22px } }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(16px) }
+      to   { opacity:1; transform:translateY(0) }
+    }
+
+    /* ============================================================
+       FORM ELEMENTS
+       ============================================================ */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px }
+    @media(max-width:560px){ .form-grid { grid-template-columns: 1fr } }
+    .form-group { display: flex; flex-direction: column; gap: 8px }
+    .form-group.full { grid-column: 1 / -1 }
+
+    label {
+      font-size: .83rem; font-weight: 700; color: var(--navy);
+      letter-spacing: .2px;
+    }
+    .label-hint { font-size: .75rem; color: var(--gray); font-weight: 400; margin-left: 6px }
+
+    input[type="number"], input[type="text"], input[type="tel"], input[type="email"], select {
+      height: 52px;
+      border: 1.5px solid var(--gray-lt);
+      border-radius: var(--radius-sm);
+      padding: 0 16px;
+      font-family: var(--font); font-size: .95rem; font-weight: 500;
+      color: var(--navy); background: var(--white);
+      transition: all .2s ease; outline: none;
+      appearance: none; -webkit-appearance: none;
+    }
+    input:focus, select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(43,123,200,.12);
+    }
+    input.error, select.error {
+      border-color: #EF4444;
+      box-shadow: 0 0 0 3px rgba(239,68,68,.1);
+    }
+    .error-msg {
+      font-size: .78rem; color: #EF4444; font-weight: 600;
+      display: none; margin-top: 2px;
+    }
+    .error-msg.show { display: block }
+
+    .select-wrap { position: relative }
+    .select-wrap::after {
+      content: '▾'; position: absolute; right: 16px; top: 50%;
+      transform: translateY(-50%); color: var(--gray); font-size: .9rem;
+      pointer-events: none;
+    }
+    .select-wrap select { width: 100%; cursor: pointer }
+
+    .input-prefix {
+      position: relative;
+    }
+    .input-prefix input { padding-left: 58px }
+    .input-prefix .prefix {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 48px; display: flex; align-items: center; justify-content: center;
+      font-size: .82rem; font-weight: 700; color: var(--gray);
+      border-right: 1.5px solid var(--gray-lt);
+    }
+
+    .optional-badge {
+      display: inline-block; font-size: .7rem; font-weight: 600;
+      color: var(--gray); background: var(--gray-lt);
+      padding: 2px 8px; border-radius: 4px; margin-left: 6px;
+    }
+    .required-badge {
+      color: var(--orange); font-size: .85rem; margin-left: 3px;
+    }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn-primary {
+      width: 100%; height: 58px; margin-top: 28px;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-lt) 100%);
+      color: var(--white); border: none; border-radius: var(--radius-sm);
+      font-family: var(--font); font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: all .25s ease;
+      box-shadow: 0 6px 24px rgba(232,84,26,.35);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      letter-spacing: .2px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(232,84,26,.45);
+    }
+    .btn-primary:active { transform: translateY(0) }
+
+    .btn-secondary {
+      width: 100%; height: 58px; margin-top: 12px;
+      background: transparent; color: var(--gray-dark);
+      border: 1.5px solid var(--gray-lt); border-radius: var(--radius-sm);
+      font-family: var(--font); font-size: .92rem; font-weight: 600;
+      cursor: pointer; transition: all .2s ease;
+    }
+    .btn-secondary:hover { border-color: var(--gray); color: var(--navy) }
+
+    .btn-whatsapp {
+      width: 100%; height: 62px;
+      background: linear-gradient(135deg, #25D366 0%, #1DB954 100%);
+      color: var(--white); border: none; border-radius: var(--radius-sm);
+      font-family: var(--font); font-size: 1.05rem; font-weight: 700;
+      cursor: pointer; transition: all .25s ease; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37,211,102,.3);
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      letter-spacing: .2px;
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(37,211,102,.4);
+    }
+    .btn-whatsapp svg { width:22px; height:22px; flex-shrink:0 }
+
+    /* ============================================================
+       LEAD CAPTURE (Paso 2)
+       ============================================================ */
+    .lead-header { text-align: center; margin-bottom: 32px }
+    .lead-icon {
+      width: 68px; height: 68px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(22,163,74,.12), rgba(43,123,200,.12));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-size: 1.8rem;
+    }
+    .lead-header h3 {
+      font-size: 1.55rem; font-weight: 800; color: var(--navy);
+      margin-bottom: 10px; line-height: 1.2;
+    }
+    .lead-header p {
+      font-size: .92rem; color: var(--gray-dark); line-height: 1.7;
+      max-width: 400px; margin: 0 auto;
+    }
+    .trust-note {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: var(--off-white); border-radius: var(--radius-sm);
+      padding: 14px 18px; margin-top: 20px;
+      font-size: .8rem; color: var(--gray); line-height: 1.6;
+    }
+    .trust-note::before { content:'🔒'; font-size:1rem; flex-shrink:0; margin-top:1px }
+
+    /* ============================================================
+       RESULTADOS
+       ============================================================ */
+    .results-header { margin-bottom: 32px }
+    .results-header h3 {
+      font-size: 1.4rem; font-weight: 800; color: var(--navy); margin-bottom: 6px;
+    }
+    .results-header p { font-size: .88rem; color: var(--gray) }
+
+    .results-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin-bottom: 16px;
+    }
+    @media(max-width:520px){ .results-grid { grid-template-columns: 1fr } }
+
+    .result-card {
+      background: var(--off-white); border-radius: var(--radius-sm);
+      padding: 22px 20px; border: 1.5px solid var(--gray-lt);
+      transition: all .2s ease;
+    }
+    .result-card:hover { border-color: var(--blue-lt); transform: translateY(-2px); box-shadow: var(--shadow-sm) }
+    .result-card .rc-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .8px;
+      text-transform: uppercase; color: var(--gray); margin-bottom: 8px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .result-card .rc-label .rc-icon { font-size: .95rem }
+    .result-card .rc-value {
+      font-size: 1.5rem; font-weight: 800; color: var(--navy);
+      line-height: 1; margin-bottom: 4px;
+    }
+    .result-card .rc-sub { font-size: .78rem; color: var(--gray); line-height: 1.5 }
+
+    /* Tarjetas de ahorro — más grandes */
+    .result-card.highlight {
+      grid-column: span 1;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      border-color: transparent;
+    }
+    @media(min-width:521px){
+      .results-grid .result-card:nth-child(6),
+      .results-grid .result-card:nth-child(7) {
+        grid-column: span 1;
+      }
+      .savings-row {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+        margin-bottom: 16px;
+      }
+    }
+    @media(max-width:520px){
+      .savings-row { display: grid; grid-template-columns: 1fr; gap: 14px; margin-bottom: 16px }
+    }
+
+    .result-card.highlight .rc-label { color: rgba(255,255,255,.55) }
+    .result-card.highlight .rc-value { color: var(--white); font-size: 2rem }
+    .result-card.highlight .rc-sub { color: rgba(255,255,255,.5) }
+    .result-card.highlight .rc-icon-big {
+      font-size: 1.4rem; margin-bottom: 10px; display: block;
+    }
+
+    .disclaimer {
+      background: rgba(43,123,200,.06); border-left: 3px solid var(--blue-lt);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px; margin: 24px 0;
+      font-size: .82rem; color: var(--gray-dark); line-height: 1.72;
+    }
+
+    .whatsapp-block { text-align: center; margin-top: 8px }
+    .whatsapp-sub {
+      font-size: .82rem; color: var(--gray); margin-top: 12px; line-height: 1.6;
+    }
+    .recalc-link {
+      display: inline-block; margin-top: 20px;
+      font-size: .84rem; color: var(--blue); font-weight: 600;
+      cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+    }
+    .recalc-link:hover { color: var(--navy) }
+
+    /* ============================================================
+       DISPLAY HIDDEN
+       ============================================================ */
+    .step { display: none }
+    .step.active { display: block }
+
+    /* ============================================================
+       LOADING STATE
+       ============================================================ */
+    .btn-primary.loading {
+      pointer-events: none; opacity: .8;
+    }
+    .btn-primary.loading::after {
+      content: '';
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      margin-left: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg) } }
+  
+</style>
 </head>
 <body>
 
@@ -315,13 +700,12 @@
   </div>
   <a href="https://wa.me/50230821405?text=Hola,%20quiero%20mi%20cotización%20gratis%20de%20energía%20solar" target="_blank" class="nav-btn">Cotiza Gratis</a>
 </nav>
-
 <section class="hero">
   <div class="hero-grid">
     <div>
       <div class="hero-badge">☀️ +150 familias guatemaltecas ya están ahorrando</div>
-      <h1>Energía Solar<br/>Para Ahorrar<br/>En Guatemala</h1>
-      <p class="hero-p">Genera tu propia energía, reduce tu factura de luz hasta un 86% y protégete para siempre de los aumentos de la tarifa eléctrica de la Empresa Eléctrica.</p>
+      <h1>Deja de pagar de más<br/>por la luz.<br/>Instala solar.</h1>
+      <p class="hero-p">Tu sistema se diseña con base en tu consumo real. Instalación en 2-3 días. Financiamiento sin enganche disponible.</p>
       <div class="hero-btns">
         <a href="https://wa.me/50230821405?text=Hola,%20quiero%20mi%20cotización%20gratis%20de%20energía%20solar" target="_blank" class="btn-p">☀️ Quiero mi cotización gratis</a>
         <a href="#como-funciona" class="btn-o">¿Cuál es el proceso?</a>
@@ -337,7 +721,6 @@
     </div>
   </div>
 </section>
-
 <!-- PROBLEMA / DOLOR -->
 <section style="background:var(--white)">
   <div class="c">
@@ -363,7 +746,123 @@
     </div>
   </div>
 </section>
-
+<section class="calc-section" id="calculadora-solar" aria-label="Calculadora de sistema solar residencial">
+  <div class="calc-container">
+    <header class="calc-header">
+      <div class="calc-tag">Herramienta gratuita</div>
+      <h2>¿Cuántos paneles solares<br/><span>necesita tu casa?</span></h2>
+      <p>Calcula en segundos el tamaño de tu sistema solar, el ahorro mensual estimado y el rango de inversión según tu consumo real.</p>
+    </header>
+    <div class="progress-wrap" role="progressbar" aria-label="Paso del proceso">
+      <div class="progress-step active" id="prog-1">
+        <div class="step-num">1</div>
+        <span>Datos de consumo</span>
+      </div>
+      <div class="progress-divider"></div>
+      <div class="progress-step" id="prog-2">
+        <div class="step-num">2</div>
+        <span>Recibir estimación</span>
+      </div>
+    </div>
+    <div class="calc-card step active" id="step-1">
+      <form id="form-consumo" novalidate>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="consumo">Consumo mensual promedio <span class="label-hint">en kWh</span><span class="required-badge">*</span></label>
+            <div class="input-prefix">
+              <span class="prefix">kWh</span>
+              <input type="number" id="consumo" name="consumo" placeholder="Ej: 350" min="1" max="9999" aria-required="true"/>
+            </div>
+            <span class="error-msg" id="err-consumo">Ingresa un consumo válido mayor a 0</span>
+            <small style="font-size:.77rem;color:var(--gray);margin-top:4px">Puedes encontrarlo en tu recibo de luz mensual</small>
+          </div>
+          <div class="form-group">
+            <label for="distribuidora">Distribuidora <span class="required-badge">*</span></label>
+            <div class="select-wrap">
+              <select id="distribuidora" name="distribuidora" aria-required="true">
+                <option value="">Seleccionar...</option>
+                <option value="EEGSA">EEGSA</option>
+                <option value="ENERGUATE">ENERGUATE</option>
+              </select>
+            </div>
+            <span class="error-msg" id="err-distribuidora">Selecciona tu distribuidora</span>
+          </div>
+          <div class="form-group">
+            <label for="techo">Tipo de techo <span class="required-badge">*</span></label>
+            <div class="select-wrap">
+              <select id="techo" name="techo" aria-required="true">
+                <option value="">Seleccionar...</option>
+                <option value="lamina">Lámina</option>
+                <option value="losa">Losa</option>
+                <option value="teja">Teja</option>
+              </select>
+            </div>
+            <span class="error-msg" id="err-techo">Selecciona el tipo de techo</span>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" id="btn-calcular">☀️ Calcular mi sistema solar</button>
+      </form>
+    </div>
+    <div class="calc-card step" id="step-2">
+      <div class="lead-header">
+        <div class="lead-icon">✅</div>
+        <h3>Su estimación solar está lista</h3>
+        <p>Compártanos su WhatsApp para mostrarle sus resultados estimados y ayudarle con una propuesta más precisa si decide avanzar.</p>
+      </div>
+      <form id="form-lead" novalidate>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="nombre">Nombre <span class="optional-badge">Opcional</span></label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre"/>
+          </div>
+          <div class="form-group full">
+            <label for="whatsapp-lead">WhatsApp <span class="required-badge">*</span></label>
+            <div class="input-prefix">
+              <span class="prefix">+502</span>
+              <input type="tel" id="whatsapp-lead" name="whatsapp" placeholder="3082-1405" aria-required="true" inputmode="numeric"/>
+            </div>
+            <span class="error-msg" id="err-whatsapp">Ingresa un número de WhatsApp válido (mínimo 8 dígitos)</span>
+          </div>
+          <div class="form-group full">
+            <label for="email-lead">Correo electrónico <span class="optional-badge">Opcional</span></label>
+            <input type="email" id="email-lead" name="email" placeholder="tucorreo@gmail.com"/>
+            <span class="error-msg" id="err-email">Ingresa un correo válido</span>
+            <small style="font-size:.77rem;color:var(--gray);margin-top:4px">Si deseas recibir seguimiento adicional por correo</small>
+          </div>
+        </div>
+        <div class="trust-note">Sin compromiso. Usaremos su información únicamente para compartir su estimación y darle seguimiento si usted lo desea.</div>
+        <button type="submit" class="btn-primary" id="btn-ver-resultados">Ver mis resultados →</button>
+        <button type="button" class="btn-secondary" id="btn-volver">← Modificar datos de consumo</button>
+      </form>
+    </div>
+    <div class="calc-card step" id="step-3">
+      <div class="results-header">
+        <h3>Estimación de tu sistema solar</h3>
+        <p id="results-subtitle">Basado en tu consumo y tipo de instalación</p>
+      </div>
+      <div class="results-grid">
+        <div class="result-card"><div class="rc-label"><span class="rc-icon">⚡</span> Capacidad del sistema</div><div class="rc-value" id="res-capacidad">—</div><div class="rc-sub">kilovatios pico (kWp)</div></div>
+        <div class="result-card"><div class="rc-label"><span class="rc-icon">🔆</span> Paneles estimados</div><div class="rc-value" id="res-paneles">—</div><div class="rc-sub">paneles de 645 W</div></div>
+        <div class="result-card"><div class="rc-label"><span class="rc-icon">📊</span> Generación mensual</div><div class="rc-value" id="res-generacion">—</div><div class="rc-sub">kWh generados al mes</div></div>
+        <div class="result-card"><div class="rc-label"><span class="rc-icon">🏗️</span> Tiempo de instalación</div><div class="rc-value" id="res-tiempo">—</div><div class="rc-sub" id="res-tiempo-sub">días hábiles aproximados</div></div>
+        <div class="result-card" style="grid-column:1/-1"><div class="rc-label"><span class="rc-icon">💰</span> Rango de inversión</div><div class="rc-value" id="res-inversion">—</div><div class="rc-sub" id="res-inversion-sub">estimado todo incluido según tipo de techo</div></div>
+      </div>
+      <div class="savings-row">
+        <div class="result-card highlight"><span class="rc-icon-big">💸</span><div class="rc-label">Ahorro mensual estimado</div><div class="rc-value" id="res-ahorro-mensual">—</div><div class="rc-sub">quetzales menos en tu factura cada mes</div></div>
+        <div class="result-card highlight"><span class="rc-icon-big">📈</span><div class="rc-label">Ahorro anual estimado</div><div class="rc-value" id="res-ahorro-anual">—</div><div class="rc-sub">quetzales al año de ahorro proyectado</div></div>
+      </div>
+      <div class="disclaimer"><strong>Estimación referencial.</strong> Esta herramienta brinda una estimación inicial con base en su consumo y tipo de instalación. La propuesta final puede variar según el recibo de energía, área disponible, orientación, sombras y condiciones técnicas del sitio.</div>
+      <div class="whatsapp-block">
+        <a id="btn-whatsapp-final" href="#" target="_blank" rel="noopener" class="btn-whatsapp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Solicitar cotización específica por WhatsApp
+        </a>
+        <p class="whatsapp-sub">Envíenos su recibo de luz y le ayudamos a validar una propuesta más precisa.</p>
+        <span class="recalc-link" id="btn-recalcular">← Hacer un nuevo cálculo</span>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="savings-sec">
   <div class="c">
     <div class="s-tag">Tu ahorro potencial</div>
@@ -384,130 +883,17 @@
     </div>
     <div class="hl-grid">
       <div class="hl-card"><div class="hl-num">Mes <span>1</span></div><div class="hl-txt">Empiezas a ahorrar desde el primer mes, incluso con financiamiento sin enganche</div></div>
-      <div class="hl-card"><div class="hl-num">&lt;<span>3</span> años</div><div class="hl-txt">La mayoría de clientes recupera su inversión en entre 2.5 - 4 años</div></div>
+      <div class="hl-card"><div class="hl-num">&lt;<span>4</span> años</div><div class="hl-txt">La mayoría de clientes recupera su inversión en entre 2.5 - 4 años</div></div>
       <div class="hl-card"><div class="hl-num"><span>30</span> años</div><div class="hl-txt">El sistema genera energía limpia y ahorro garantizado por más de tres décadas</div></div>
       <div class="hl-card"><div class="hl-num"><span>0%</span></div><div class="hl-txt">Sin enganche y sin recargo con financiamiento disponible en tu banco</div></div>
     </div>
   </div>
 </section>
-
-<section>
-  <div class="c">
-    <div class="s-tag">Por qué solar</div>
-    <h2 class="s-title">La tarifa eléctrica sube todos los años.<br/>Con energía solar no te ves afectado.</h2>
-    <p class="s-sub">Cada mes que pasan sin paneles solares, están pagando de más. La decisión más inteligente es actuar hoy.</p>
-    <div class="ben-grid">
-      <div class="ben-card"><div class="ben-icon">⚡</div><h3>Genera tu propia energía por 30+ años</h3><p>Un sistema solar produce energía de forma confiable por más de tres décadas. Una inversión única con retorno garantizado desde el primer mes.</p></div>
-      <div class="ben-card"><div class="ben-icon">🛡️</div><h3>Protégete de los aumentos de tarifa la Empresa Eléctrica</h3><p>La tarifa eléctrica en Guatemala ha incrementado año con año. Con energía solar, tu costo de electricidad queda fijo en los cargos básicos mínimos.</p></div>
-      <div class="ben-card"><div class="ben-icon">🌿</div><h3>Reduce tu huella de carbono</h3><p>Contribuye al medio ambiente de Guatemala generando energía limpia y renovable. Cada instalación representa toneladas de CO₂ que no se emiten.</p></div>
-      <div class="ben-card"><div class="ben-icon">📱</div><h3>Monitoreo en tiempo real desde tu celular</h3><p>Desde una app puedes ver cuánta energía está generando tu sistema ahora mismo. Control total de tu producción e historial de ahorro.</p></div>
-      <div class="ben-card"><div class="ben-icon">🔧</div><h3>Instalación en 2-3 días</h3><p>Nuestro equipo técnico especializado instala todo el sistema en tu propiedad en tan 2-3 días. Rápido, limpio y sin complicaciones.</p></div>
-      <div class="ben-card"><div class="ben-icon">💰</div><h3>Ahorra desde el primer mes</h3><p>Con financiamiento disponible, la cuota mensual puede quedar menor a lo que ya pagas de luz. Ahorro inmediato sin desembolso inicial.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPENSACIÓN DE EXCEDENTES -->
-<section style="background:var(--navy-dark)">
-  <div class="c">
-    <div class="s-tag" style="color:var(--blue-light)">Cómo funciona el ahorro</div>
-    <h2 class="s-title" style="color:var(--white)">¿Qué pasa con la energía<br/>que no usas?</h2>
-    <p class="s-sub" style="color:rgba(255,255,255,.55)">Tu sistema solar no desperdicia nada. Cada kilovatio que produces pero no consumes trabaja a tu favor.</p>
-    <div class="excedentes-grid">
-      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
-        <div style="width:52px;height:52px;background:rgba(43,123,200,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">☀️</div>
-        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">Tu sistema genera energía</h3>
-        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">Durante el día los paneles producen electricidad. El sistema la usa primero dentro de tu vivienda.</p>
-      </div>
-      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
-        <div style="width:52px;height:52px;background:rgba(43,123,200,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">🔄</div>
-        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">El excedente va a la red</h3>
-        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">Si produces más de lo que consumes, ese excedente se inyecta a la red eléctrica automáticamente.</p>
-      </div>
-      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
-        <div style="width:52px;height:52px;background:rgba(232,84,26,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">📊</div>
-        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">El medidor lo registra</h3>
-        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">Un medidor bidireccional registra tanto lo que entra como lo que sale. Así se calcula tu compensación.</p>
-      </div>
-      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
-        <div style="width:52px;height:52px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">💰</div>
-        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">Se descuenta de tu factura</h3>
-        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">La energía enviada a la red se compensa contra tu consumo nocturno, reduciendo aún más tu factura mensual.</p>
-      </div>
-    </div>
-    <div style="background:rgba(43,123,200,.12);border:1px solid rgba(43,123,200,.25);border-radius:12px;padding:28px 32px;text-align:center">
-      <p style="color:rgba(255,255,255,.8);font-size:.95rem;line-height:1.75">Este esquema se llama <strong style="color:var(--blue-light)">usuario autoproductor con excedentes</strong> y está regulado. Tu instalación queda registrada formalmente ante la distribuidora con un medidor bidireccional oficial.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SEÑALES DE CONFIANZA -->
-<section style="background:var(--off-white)">
-  <div class="c">
-    <div class="s-tag">Por qué SolarDepot</div>
-    <h2 class="s-title">Una empresa que sabe<br/>lo que hace. Y lo demuestra.</h2>
-    <p class="s-sub">No somos intermediarios. Somos especialistas en energía solar residencial con experiencia real en instalaciones en Guatemala.</p>
-    <div class="trust-grid">
-      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
-        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🔩</div>
-        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Instalación llave en mano</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Nos encargamos de todo: diseño, equipos, instalación y gestión del medidor. Tú no tienes que hacer nada.</p></div>
-      </div>
-      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
-        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📐</div>
-        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Diseño personalizado para tu vivienda</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Analizamos tu consumo real y diseñamos el sistema exacto que necesitas. No vendemos paquetes genéricos.</p></div>
-      </div>
-      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
-        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🏅</div>
-        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Equipos Tier 1 con garantía real</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Solo trabajamos con marcas que tienen garantías de largo plazo respaldadas por el fabricante. Sin atajos.</p></div>
-      </div>
-      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
-        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📱</div>
-        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Monitoreo y seguimiento post-instalación</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Después de instalar, puedes monitorear tu sistema desde una app y contamos con soporte para cualquier duda.</p></div>
-      </div>
-      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
-        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🤝</div>
-        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Asesoría honesta, sin presión</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Te explicamos si solar te conviene o no según tu situación. Si no es el momento adecuado, te lo decimos.</p></div>
-      </div>
-      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
-        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📋</div>
-        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Gestión completa con la distribuidora</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Nos encargamos de todos los trámites para registrarte como autoproductor y gestionar el medidor bidireccional.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-  <div class="c">
-    <div class="s-tag">El sistema</div>
-    <h2 class="s-title" style="color:var(--white)">Diseñado exactamente<br/>para tu consumo</h2>
-    <p class="s-sub" style="color:rgba(255,255,255,.52);margin-bottom:48px">Analizamos tu factura de la Empresa Eléctrica y diseñamos el sistema solar perfecto para cubrir el 100% de tu consumo actual.</p>
-    <div class="specs-grid">
-      <div class="sp-item"><div class="sp-num">100<span class="u">%</span></div><div class="sp-lbl">Cobertura de tu consumo actual de electricidad</div></div>
-      <div class="sp-item"><div class="sp-num">2<span class="u"> días</span></div><div class="sp-lbl">Tiempo de instalación en tu propiedad</div></div>
-      <div class="sp-item"><div class="sp-num">30<span class="u">+</span></div><div class="sp-lbl">Años de vida útil y generación garantizada</div></div>
-      <div class="sp-item"><div class="sp-num" style="font-size:1.5rem;padding-top:8px">Tier 1</div><div class="sp-lbl">Marcas usadas en las plantas solares más grandes del mundo</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="tl-sec" id="como-funciona">
-  <div class="c" style="text-align:center">
-    <div class="s-tag" style="justify-content:center">El proceso</div>
-    <h2 class="s-title">Desde hoy hasta<br/>tu primer ahorro</h2>
-    <p class="s-sub" style="margin:0 auto 52px">En menos de 4 semanas puedes estar generando tu propia energía solar y ahorrando en tu factura de luz de la Empresa Eléctrica.</p>
-    <div class="tl">
-      <div class="tl-item"><div class="tl-n">1</div><div class="tl-c"><h3>Confirma tu cotización</h3><p>Elige tu forma de pago: contado o financiamiento sin enganche. Te guiamos en cada paso.</p><span class="tl-tag">1 día</span></div></div>
-      <div class="tl-item"><div class="tl-n">2</div><div class="tl-c"><h3>Coordinación de suministros y equipos</h3><p>Gestionamos el despacho de materiales y paneles solares y coordinamos la fecha de instalación.</p><span class="tl-tag">2 días</span></div></div>
-      <div class="tl-item"><div class="tl-n">3</div><div class="tl-c"><h3>Instalación en tu propiedad</h3><p>Nuestro equipo técnico instala todo el sistema solar en tu propiedad en tan 2-3 días.</p><span class="tl-tag">2–3 días</span></div></div>
-      <div class="tl-item"><div class="tl-n">4</div><div class="tl-c"><h3>Gestión del medidor en la Empresa Eléctrica</h3><p>Nos encargamos de toda la gestión con la empresa eléctrica para el cambio de medidor y registro como autoproductor solar.</p><span class="tl-tag">3–4 semanas</span></div></div>
-      <div class="tl-item"><div class="tl-n">5</div><div class="tl-c"><h3>Activación y ahorro por 30 años</h3><p>Tu sistema empieza a generar. Monitorea tu producción en tiempo real desde tu celular y empieza a ahorrar.</p><span class="tl-tag g">30 años de ahorro garantizado</span></div></div>
-    </div>
-  </div>
-</section>
-
 <section>
   <div class="c">
     <div class="s-tag">Financiamiento</div>
     <h2 class="s-title">Empieza a ahorrar<br/>sin desembolso inicial</h2>
-    <p class="s-sub">Con Neocuotas instala tu sistema solar sin enganche y sin recargo. La cuota mensual puede quedar menor a lo que hoy ya pagas de luz.</p>
+    <p class="s-sub" style="display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap">Con <img src="https://comercializagt-sys.github.io/solardepot-web/logo-neocuotas.png" alt="Neocuotas" style="height:30px;vertical-align:middle;display:inline-block"/> instala tu sistema solar sin enganche y sin recargo. La cuota mensual puede quedar menor a lo que hoy ya pagas de luz.</p>
     <div class="fin-banner">
       <div>
         <h3>La cuota del sistema puede quedar <span>menor</span> a lo que ya pagas de luz</h3>
@@ -534,34 +920,6 @@
     </div>
   </div>
 </section>
-
-<section class="guar-sec">
-  <div class="c">
-    <div class="s-tag">Garantías</div>
-    <h2 class="s-title">Si algo falla,<br/>nosotros respondemos</h2>
-    <p class="s-sub">Trabajamos con las marcas de paneles solares más confiables del mercado y respaldamos cada instalación en Guatemala.</p>
-    <div class="guar-grid">
-      <div class="guar-card"><div class="gy">30<span> años</span></div><div class="gt">Paneles Solares</div><div class="gd">Garantía de generación. Si el rendimiento cae fuera del rango garantizado, lo corregimos sin costo.</div></div>
-      <div class="guar-card"><div class="gy">10<span> años</span></div><div class="gt">Inversores</div><div class="gd">Garantía por defectos de fábrica. Los inversores están cubiertos por el fabricante durante una década.</div></div>
-      <div class="guar-card"><div class="gy">2<span> años</span></div><div class="gt">Instalación</div><div class="gd">Garantía en mano de obra y cableado eléctrico. Cualquier falla de instalación es nuestra responsabilidad.</div></div>
-    </div>
-    <div class="brands-sec">
-      <div class="brands-t">Trabajamos con marcas Tier 1</div>
-      <div class="brands-s">Los mismos fabricantes que usan las plantas solares más grandes del mundo</div>
-      <div class="brands-flex">
-        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-longi.png" alt="LONGi Solar"/></div>
-        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-trinasolar.png" alt="Trina Solar"/></div>
-        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-jasolar.png" alt="JA Solar"/></div>
-        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-jinko.png" alt="Jinko Solar"/></div>
-      </div>
-      <div class="brands-flex" style="margin-top:12px;justify-content:center">
-        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-huawei.jpg" alt="Huawei"/></div>
-        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-solax.webp" alt="SolaxPower"/></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="testi-sec">
   <div class="c">
     <div class="s-tag">Clientes verificados</div>
@@ -603,23 +961,6 @@
         </div>
       </div>
       <div class="t-card">
-        <img src="https://comercializagt-sys.github.io/solardepot-web/instalacion-4.png" alt="Instalación solar Carlos M." style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:18px;"/>
-        <div class="t-stars">★★★★★</div>
-        <p class="t-txt">"Desde que me explicaron el proceso entendí que era simple. En menos de un mes ya tenía el sistema funcionando. El equipo de SolarDepot estuvo presente en cada paso."</p>
-        <div class="t-auth">
-          <div class="t-av">CM</div>
-          <div>
-            <div class="t-name">Carlos M.</div><div class="t-verified">✔ Verificado</div>
-            <div class="t-loc">Mixco, Guatemala</div>
-          </div>
-        </div>
-        <div class="t-stats">
-          <div class="ts"><div class="ts-v">9.2 kW</div><div class="ts-k">Sistema</div></div>
-          <div class="ts"><div class="ts-v">Q1,900</div><div class="ts-k">Ahorro/mes</div></div>
-          <div class="ts"><div class="ts-v">2.8 años</div><div class="ts-k">Recupero</div></div>
-        </div>
-      </div>
-      <div class="t-card">
         <img src="https://comercializagt-sys.github.io/solardepot-web/instalacion-3.png" alt="Instalación solar Gerardo S." style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:18px;"/>
         <div class="t-stars">★★★★★</div>
         <p class="t-txt">"SolarDepot se encargó de absolutamente todo. Yo no moví un dedo. Hoy pago solo los cargos fijos de la Empresa Eléctrica. La mejor inversión que he hecho en esta propiedad."</p>
@@ -639,7 +980,141 @@
     </div>
   </div>
 </section>
-
+<section class="tl-sec" id="como-funciona">
+  <div class="c" style="text-align:center">
+    <div class="s-tag" style="justify-content:center">El proceso</div>
+    <h2 class="s-title">Desde hoy hasta<br/>tu primer ahorro</h2>
+    <p class="s-sub" style="margin:0 auto 52px">En menos de 4 semanas puedes estar generando tu propia energía solar y ahorrando en tu factura de luz de la Empresa Eléctrica.</p>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-n">1</div><div class="tl-c"><h3>Confirma tu cotización</h3><p>Elige tu forma de pago: contado o financiamiento sin enganche. Te guiamos en cada paso.</p><span class="tl-tag">1 día</span></div></div>
+      <div class="tl-item"><div class="tl-n">2</div><div class="tl-c"><h3>Coordinación de suministros y equipos</h3><p>Gestionamos el despacho de materiales y paneles solares y coordinamos la fecha de instalación.</p><span class="tl-tag">2 días</span></div></div>
+      <div class="tl-item"><div class="tl-n">3</div><div class="tl-c"><h3>Instalación en tu propiedad</h3><p>Nuestro equipo técnico instala todo el sistema solar en tu propiedad en 2-3 días.</p><span class="tl-tag">2–3 días</span></div></div>
+      <div class="tl-item"><div class="tl-n">4</div><div class="tl-c"><h3>Gestión del medidor en la Empresa Eléctrica</h3><p>Nos encargamos de toda la gestión con la empresa eléctrica para el cambio de medidor y registro como autoproductor solar.</p><span class="tl-tag">3–4 semanas</span></div></div>
+      <div class="tl-item"><div class="tl-n">5</div><div class="tl-c"><h3>Activación y ahorro por 30 años</h3><p>Tu sistema empieza a generar. Monitorea tu producción en tiempo real desde tu celular y empieza a ahorrar.</p><span class="tl-tag g">30 años de ahorro garantizado</span></div></div>
+    </div>
+  </div>
+</section>
+<!-- SEÑALES DE CONFIANZA -->
+<section style="background:var(--off-white)">
+  <div class="c">
+    <div class="s-tag">Por qué SolarDepot</div>
+    <h2 class="s-title">Una empresa que sabe<br/>lo que hace. Y lo demuestra.</h2>
+    <p class="s-sub">No somos intermediarios. Somos especialistas en energía solar residencial con experiencia real en instalaciones en Guatemala.</p>
+    <div class="trust-grid">
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🔩</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Instalación llave en mano</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Nos encargamos de todo: diseño, equipos, instalación y gestión del medidor. Tú no tienes que hacer nada.</p></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📐</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Diseño personalizado para tu vivienda</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Analizamos tu consumo real y diseñamos el sistema exacto que necesitas. No vendemos paquetes genéricos.</p></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🏅</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Equipos Tier 1 con garantía real</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Solo trabajamos con marcas que tienen garantías de largo plazo respaldadas por el fabricante. Sin atajos.</p></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📱</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Monitoreo y seguimiento post-instalación</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Después de instalar, puedes monitorear tu sistema desde una app y contamos con soporte para cualquier duda.</p></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🤝</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Asesoría honesta, sin presión</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Te explicamos si solar te conviene o no según tu situación. Si no es el momento adecuado, te lo decimos.</p></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📋</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Gestión completa con la distribuidora</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Nos encargamos de todos los trámites para registrarte como autoproductor y gestionar el medidor bidireccional.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="c">
+    <div class="s-tag">Por qué solar</div>
+    <h2 class="s-title">La tarifa eléctrica sube todos los años.<br/>Con energía solar no te ves afectado.</h2>
+    <p class="s-sub">Cada mes que pasan sin paneles solares, están pagando de más. La decisión más inteligente es actuar hoy.</p>
+    <div class="ben-grid">
+      <div class="ben-card"><div class="ben-icon">⚡</div><h3>Genera tu propia energía por 30+ años</h3><p>Un sistema solar produce energía de forma confiable por más de tres décadas. Una inversión única con retorno garantizado desde el primer mes.</p></div>
+      <div class="ben-card"><div class="ben-icon">🛡️</div><h3>Protégete de los aumentos de tarifa la Empresa Eléctrica</h3><p>La tarifa eléctrica en Guatemala ha incrementado año con año. Con energía solar, tu costo de electricidad queda fijo en los cargos básicos mínimos.</p></div>
+      <div class="ben-card"><div class="ben-icon">🌿</div><h3>Reduce tu huella de carbono</h3><p>Contribuye al medio ambiente de Guatemala generando energía limpia y renovable. Cada instalación representa toneladas de CO₂ que no se emiten.</p></div>
+      <div class="ben-card"><div class="ben-icon">📱</div><h3>Monitoreo en tiempo real desde tu celular</h3><p>Desde una app puedes ver cuánta energía está generando tu sistema ahora mismo. Control total de tu producción e historial de ahorro.</p></div>
+      <div class="ben-card"><div class="ben-icon">🔧</div><h3>Instalación en 2-3 días</h3><p>Nuestro equipo técnico especializado instala todo el sistema en tu propiedad en 2-3 días. Rápido, limpio y sin complicaciones.</p></div>
+      <div class="ben-card"><div class="ben-icon">💰</div><h3>Ahorra desde el primer mes</h3><p>Con financiamiento disponible, la cuota mensual puede quedar menor a lo que ya pagas de luz. Ahorro inmediato sin desembolso inicial.</p></div>
+    </div>
+  </div>
+</section>
+<!-- COMPENSACIÓN DE EXCEDENTES -->
+<section style="background:var(--navy-dark)">
+  <div class="c">
+    <div class="s-tag" style="color:var(--blue-light)">Cómo funciona el ahorro</div>
+    <h2 class="s-title" style="color:var(--white)">¿Qué pasa con la energía<br/>que no usas?</h2>
+    <p class="s-sub" style="color:rgba(255,255,255,.55)">Tu sistema solar no desperdicia nada. Cada kilovatio que produces pero no consumes trabaja a tu favor.</p>
+    <div class="excedentes-grid">
+      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
+        <div style="width:52px;height:52px;background:rgba(43,123,200,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">☀️</div>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">Tu sistema genera energía</h3>
+        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">Durante el día los paneles producen electricidad. El sistema la usa primero dentro de tu vivienda.</p>
+      </div>
+      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
+        <div style="width:52px;height:52px;background:rgba(43,123,200,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">🔄</div>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">El excedente va a la red</h3>
+        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">Si produces más de lo que consumes, ese excedente se inyecta a la red eléctrica automáticamente.</p>
+      </div>
+      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
+        <div style="width:52px;height:52px;background:rgba(232,84,26,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">📊</div>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">El medidor lo registra</h3>
+        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">Un medidor bidireccional registra tanto lo que entra como lo que sale. Así se calcula tu compensación.</p>
+      </div>
+      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
+        <div style="width:52px;height:52px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">💰</div>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">Se descuenta de tu factura</h3>
+        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">La energía enviada a la red se compensa contra tu consumo nocturno, reduciendo aún más tu factura mensual.</p>
+      </div>
+    </div>
+    <div style="background:rgba(43,123,200,.12);border:1px solid rgba(43,123,200,.25);border-radius:12px;padding:28px 32px;text-align:center">
+      <p style="color:rgba(255,255,255,.8);font-size:.95rem;line-height:1.75">Este esquema se llama <strong style="color:var(--blue-light)">usuario autoproductor con excedentes</strong> y está regulado. Tu instalación queda registrada formalmente ante la distribuidora con un medidor bidireccional oficial.</p>
+    </div>
+  </div>
+</section>
+<section class="specs-sec">
+  <div class="c">
+    <div class="s-tag">El sistema</div>
+    <h2 class="s-title" style="color:var(--white)">Diseñado exactamente<br/>para tu consumo</h2>
+    <p class="s-sub" style="color:rgba(255,255,255,.52);margin-bottom:48px">Analizamos tu factura de la Empresa Eléctrica y diseñamos el sistema solar perfecto para cubrir el 100% de tu consumo actual.</p>
+    <div class="specs-grid">
+      <div class="sp-item"><div class="sp-num">100<span class="u">%</span></div><div class="sp-lbl">Cobertura de tu consumo actual de electricidad</div></div>
+      <div class="sp-item"><div class="sp-num">2<span class="u"> días</span></div><div class="sp-lbl">Tiempo de instalación en tu propiedad</div></div>
+      <div class="sp-item"><div class="sp-num">30<span class="u">+</span></div><div class="sp-lbl">Años de vida útil y generación garantizada</div></div>
+      <div class="sp-item"><div class="sp-num" style="font-size:1.5rem;padding-top:8px">Tier 1</div><div class="sp-lbl">Marcas usadas en las plantas solares más grandes del mundo</div></div>
+    </div>
+  </div>
+</section>
+<section class="guar-sec">
+  <div class="c">
+    <div class="s-tag">Garantías</div>
+    <h2 class="s-title">Si algo falla,<br/>nosotros respondemos</h2>
+    <p class="s-sub">Trabajamos con las marcas de paneles solares más confiables del mercado y respaldamos cada instalación en Guatemala.</p>
+    <div class="guar-grid">
+      <div class="guar-card"><div class="gy">30<span> años</span></div><div class="gt">Paneles Solares</div><div class="gd">Garantía de generación. Si el rendimiento cae fuera del rango garantizado, lo corregimos sin costo.</div></div>
+      <div class="guar-card"><div class="gy">10<span> años</span></div><div class="gt">Inversores</div><div class="gd">Garantía por defectos de fábrica. Los inversores están cubiertos por el fabricante durante una década.</div></div>
+      <div class="guar-card"><div class="gy">2<span> años</span></div><div class="gt">Instalación</div><div class="gd">Garantía en mano de obra y cableado eléctrico. Cualquier falla de instalación es nuestra responsabilidad.</div></div>
+    </div>
+    <div class="brands-sec">
+      <div class="brands-t">Trabajamos con marcas Tier 1</div>
+      <div class="brands-s">Los mismos fabricantes que usan las plantas solares más grandes del mundo</div>
+      <div class="brands-flex">
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-longi.png" alt="LONGi Solar"/></div>
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-trinasolar.png" alt="Trina Solar"/></div>
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-jasolar.png" alt="JA Solar"/></div>
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-jinko.png" alt="Jinko Solar"/></div>
+      </div>
+      <div class="brands-flex" style="margin-top:12px;justify-content:center">
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-huawei.jpg" alt="Huawei"/></div>
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-solax.webp" alt="SolaxPower"/></div>
+      </div>
+    </div>
+  </div>
+</section>
 <section>
   <div class="c">
     <div class="s-tag">Preguntas frecuentes</div>
@@ -664,12 +1139,11 @@
     </div>
   </div>
 </section>
-
 <section class="cta-sec" style="position:relative">
   <div style="position:absolute;inset:0;background-image:url('https://comercializagt-sys.github.io/solardepot-web/instalacion-3.png');background-size:cover;background-position:center;opacity:0.15;"></div>
   <div class="c">
-    <h2>¿Cuánto podrías<br/>ahorrar tú?</h2>
-    <p>Envíanos tu recibo de luz y en menos de 24 horas te enviamos una cotización personalizada con el sistema ideal para tu vivienda, sin compromiso.</p>
+    <h2>El primer paso es gratis<br/>y no te compromete a nada.</h2>
+    <p>Envíanos tu recibo de luz y en menos de 24 horas te enviamos una cotización personalizada con el sistema ideal para tu vivienda.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative">
       <a href="https://wa.me/50230821405?text=Hola,%20quiero%20mi%20cotización%20gratis%20de%20paneles%20solares" target="_blank" class="btn-cta">☀️ Quiero mi cotización gratis</a>
       <a href="https://wa.me/50230821405?text=Hola,%20les%20envío%20mi%20recibo%20de%20luz%20para%20que%20me%20hagan%20una%20cotización" target="_blank" class="btn-cta" style="background:transparent;border:2px solid rgba(255,255,255,.35);box-shadow:none">📄 Enviar mi recibo de luz</a>
@@ -683,3 +1157,325 @@
 
 <footer>
   <p style="margin-bottom:6px"><strong>SolarDepot Guatemala</strong> — Ene
+<footer>
+  <p style="margin-bottom:6px"><strong>SolarDepot Guatemala</strong> — Energía Solar Para Ahorrar</p>
+  <p>Corporativo Spazio, Zona 15, Nivel 9, Of. 901, Guatemala City &nbsp;|&nbsp; <a href="tel:+50230821405">+502 3082-1405</a></p>
+</footer>
+
+<a href="https://wa.me/50230821405?text=Hola,%20quiero%20información%20sobre%20paneles%20solares" target="_blank" class="wa" aria-label="Contactar por WhatsApp">💬</a>
+
+<script>
+
+  /* ============================================================
+     CONFIGURACIÓN EDITABLE
+     ============================================================ */
+  const CONFIG = {
+    whatsapp: '50230821405', // ← EDITAR número de WhatsApp
+
+    precios: {
+      lamina: { min: 3300, max: 3700 },
+      losa:   { min: 3700, max: 4200 },
+      teja:   { min: 4300, max: 4500 },
+    },
+
+    generacionPorKWp: 125, // kWh por kWp al mes
+    wattsPanel: 645,       // watts por panel
+
+    // ============================================================
+    // INTEGRACIÓN CON BACKEND — EDITAR AQUÍ
+    // ============================================================
+    // Para conectar a un webhook o endpoint, descomentar y configurar:
+    //
+    // webhookUrl: 'https://hooks.zapier.com/hooks/catch/XXXXX/YYYYY/',
+    // webhookUrl: 'https://api.tu-crm.com/leads',
+    // webhookUrl: 'https://formspree.io/f/XXXXXXXX',
+    // webhookUrl: 'https://hook.eu1.make.com/XXXXXXXX',
+    //
+    webhookUrl: null, // ← reemplazar null con la URL cuando esté listo
+  };
+
+  /* ============================================================
+     ESTADO DE LA CALCULADORA
+     ============================================================ */
+  let datosCálculo = {}; // consumo, distribuidora, techo
+  let datosLead    = {}; // nombre, whatsapp, email
+
+  /* ============================================================
+     UTILIDADES
+     ============================================================ */
+  const $ = id => document.getElementById(id);
+
+  function fmt(n, decimals = 0) {
+    return n.toLocaleString('es-GT', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    });
+  }
+
+  function setStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    $(`step-${n}`).classList.add('active');
+    $(`step-${n}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Actualizar progress bar
+    [$('prog-1'), $('prog-2')].forEach((el, i) => {
+      el.classList.remove('active', 'done');
+      if (i + 1 < n)  el.classList.add('done');
+      if (i + 1 === n || (n === 3 && i === 1)) el.classList.add('active');
+    });
+    if (n === 3) {
+      $('prog-1').classList.add('done');
+      $('prog-2').classList.add('done');
+    }
+  }
+
+  function showError(id, show) {
+    const el = $(id);
+    if (el) el.classList.toggle('show', show);
+  }
+
+  function setInputError(inputId, hasError) {
+    const el = $(inputId);
+    if (el) el.classList.toggle('error', hasError);
+  }
+
+  /* ============================================================
+     CÁLCULOS
+     ============================================================ */
+  function calcular(consumo, distribuidora, techo) {
+    // 1. Capacidad kWp
+    const capacidad = consumo / CONFIG.generacionPorKWp;
+
+    // 2. Cantidad de paneles
+    const paneles = Math.ceil((capacidad * 1000) / CONFIG.wattsPanel);
+
+    // 3. Generación mensual
+    const generacion = capacidad * CONFIG.generacionPorKWp;
+
+    // 4. Rango de inversión
+    const precios = CONFIG.precios[techo];
+    const invMin = paneles * precios.min;
+    const invMax = paneles * precios.max;
+
+    // 5. Tiempo instalación
+    let tiempo, tiempoSub;
+    if (paneles <= 6)       { tiempo = '1'; tiempoSub = 'día hábil de instalación' }
+    else if (paneles <= 12) { tiempo = '2'; tiempoSub = 'días hábiles de instalación' }
+    else if (paneles <= 20) { tiempo = '3'; tiempoSub = 'días hábiles de instalación' }
+    else if (paneles <= 30) { tiempo = '4'; tiempoSub = 'días hábiles de instalación' }
+    else                    { tiempo = '—';  tiempoSub = 'Sujeto a elaboración de cronograma' }
+
+    // 6. Ahorro según distribuidora
+    let facturaActual, facturaConPaneles;
+
+    if (distribuidora === 'EEGSA') {
+      facturaActual      = (((1.51 * consumo) + 11.50) * 1.12) + ((((1.51 * consumo) + 11.50) * 0.13));
+      facturaConPaneles  = (((((consumo / 3) * 2) * 0.30) + 11.50) * 1.12) + ((((((consumo / 3) * 2) * 0.30) + 11.50) * 0.13));
+    } else { // ENERGUATE
+      facturaActual      = (2.31 * consumo) + 26 + 100;
+      facturaConPaneles  = (((consumo / 3) * 2) * 0.50) + 26 + 100;
+    }
+
+    const ahorroMensual = Math.max(0, facturaActual - facturaConPaneles);
+    const ahorroAnual   = ahorroMensual * 12;
+
+    return { capacidad, paneles, generacion, invMin, invMax, tiempo, tiempoSub, ahorroMensual, ahorroAnual };
+  }
+
+  /* ============================================================
+     MOSTRAR RESULTADOS EN EL DOM
+     ============================================================ */
+  function mostrarResultados(r) {
+    $('res-capacidad').textContent    = fmt(r.capacidad, 2) + ' kWp';
+    $('res-paneles').textContent      = r.paneles + (r.paneles === 1 ? ' panel' : ' paneles');
+    $('res-generacion').textContent   = fmt(r.generacion, 0) + ' kWh';
+    $('res-tiempo').textContent       = r.tiempo;
+    $('res-tiempo-sub').textContent   = r.tiempoSub;
+    $('res-inversion').textContent    = 'Q' + fmt(r.invMin) + ' — Q' + fmt(r.invMax);
+    $('res-ahorro-mensual').textContent = 'Q' + fmt(r.ahorroMensual, 0);
+    $('res-ahorro-anual').textContent   = 'Q' + fmt(r.ahorroAnual, 0);
+    $('results-subtitle').textContent  =
+      `${datosCálculo.consumo} kWh/mes · ${datosCálculo.distribuidora} · Techo ${datosCálculo.techoLabel}`;
+
+    // URL de WhatsApp con mensaje prellenado
+    const msg = encodeURIComponent(
+      `Hola, utilicé la calculadora solar y quiero una cotización más específica.\n\n` +
+      `Mi consumo: ${datosCálculo.consumo} kWh/mes\n` +
+      `Distribuidora: ${datosCálculo.distribuidora}\n` +
+      `Techo: ${datosCálculo.techoLabel}\n\n` +
+      `Adjunto mi recibo de luz para revisión.`
+    );
+    $('btn-whatsapp-final').href = `https://wa.me/${CONFIG.whatsapp}?text=${msg}`;
+  }
+
+  /* ============================================================
+     ENVÍO A WEBHOOK / CRM (descomentar cuando esté listo)
+     ============================================================ */
+  async function enviarLead(lead, calculo) {
+    if (!CONFIG.webhookUrl) return; // sin webhook configurado
+
+    const payload = {
+      // Datos del lead
+      nombre:       lead.nombre    || '',
+      whatsapp:     lead.whatsapp,
+      email:        lead.email     || '',
+      // Datos del cálculo
+      consumo:      calculo.consumo,
+      distribuidora:calculo.distribuidora,
+      techo:        calculo.techo,
+      // Resultados
+      capacidad_kwp:    calculo.resultado.capacidad,
+      paneles:          calculo.resultado.paneles,
+      ahorro_mensual:   calculo.resultado.ahorroMensual,
+      ahorro_anual:     calculo.resultado.ahorroAnual,
+      inversion_min:    calculo.resultado.invMin,
+      inversion_max:    calculo.resultado.invMax,
+      // Metadata
+      timestamp: new Date().toISOString(),
+      fuente: 'calculadora-solar',
+    };
+
+    try {
+      await fetch(CONFIG.webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch (e) {
+      console.warn('No se pudo enviar el lead:', e);
+    }
+  }
+
+  /* ============================================================
+     VALIDACIONES
+     ============================================================ */
+  function validarPaso1() {
+    let ok = true;
+    const consumo      = parseFloat($('consumo').value);
+    const distribuidora = $('distribuidora').value;
+    const techo        = $('techo').value;
+
+    const consumoOk = !isNaN(consumo) && consumo > 0;
+    setInputError('consumo', !consumoOk);
+    showError('err-consumo', !consumoOk);
+    if (!consumoOk) ok = false;
+
+    const distOk = !!distribuidora;
+    setInputError('distribuidora', !distOk);
+    showError('err-distribuidora', !distOk);
+    if (!distOk) ok = false;
+
+    const techoOk = !!techo;
+    setInputError('techo', !techoOk);
+    showError('err-techo', !techoOk);
+    if (!techoOk) ok = false;
+
+    return ok;
+  }
+
+  function validarPaso2() {
+    let ok = true;
+    const wa    = $('whatsapp-lead').value.replace(/\D/g, '');
+    const email = $('email-lead').value;
+
+    const waOk = wa.length >= 8;
+    setInputError('whatsapp-lead', !waOk);
+    showError('err-whatsapp', !waOk);
+    if (!waOk) ok = false;
+
+    if (email) {
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      setInputError('email-lead', !emailOk);
+      showError('err-email', !emailOk);
+      if (!emailOk) ok = false;
+    } else {
+      setInputError('email-lead', false);
+      showError('err-email', false);
+    }
+
+    return ok;
+  }
+
+  /* ============================================================
+     EVENTOS
+     ============================================================ */
+
+  // Paso 1 → Paso 2
+  $('form-consumo').addEventListener('submit', e => {
+    e.preventDefault();
+    if (!validarPaso1()) return;
+
+    const techoMap = { lamina: 'Lámina', losa: 'Losa', teja: 'Teja' };
+    datosCálculo = {
+      consumo:      parseFloat($('consumo').value),
+      distribuidora: $('distribuidora').value,
+      techo:        $('techo').value,
+      techoLabel:   techoMap[$('techo').value],
+    };
+
+    setStep(2);
+  });
+
+  // Paso 2 → Paso 3
+  $('form-lead').addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!validarPaso2()) return;
+
+    const btn = $('btn-ver-resultados');
+    btn.classList.add('loading');
+    btn.textContent = 'Calculando...';
+
+    // Simular pequeña pausa para sensación de procesamiento
+    await new Promise(r => setTimeout(r, 900));
+
+    datosLead = {
+      nombre:   $('nombre').value.trim(),
+      whatsapp: '+502' + $('whatsapp-lead').value.replace(/\D/g, ''),
+      email:    $('email-lead').value.trim(),
+    };
+
+    const resultado = calcular(datosCálculo.consumo, datosCálculo.distribuidora, datosCálculo.techo);
+    datosCálculo.resultado = resultado;
+
+    // Intentar enviar lead al webhook
+    await enviarLead(datosLead, datosCálculo);
+
+    mostrarResultados(resultado);
+    setStep(3);
+
+    btn.classList.remove('loading');
+    btn.textContent = 'Ver mis resultados →';
+  });
+
+  // Volver al paso 1
+  $('btn-volver').addEventListener('click', () => setStep(1));
+
+  // Recalcular desde cero
+  $('btn-recalcular').addEventListener('click', () => {
+    $('form-consumo').reset();
+    $('form-lead').reset();
+    datosCálculo = {};
+    datosLead    = {};
+    setStep(1);
+  });
+
+  // Limpiar errores al escribir
+  ['consumo','distribuidora','techo'].forEach(id => {
+    const el = $(id);
+    if (el) el.addEventListener('input', () => {
+      el.classList.remove('error');
+      showError('err-' + id, false);
+    });
+  });
+  ['whatsapp-lead','email-lead'].forEach(id => {
+    const el = $(id);
+    if (el) el.addEventListener('input', () => {
+      const errId = 'err-' + (id === 'whatsapp-lead' ? 'whatsapp' : 'email');
+      el.classList.remove('error');
+      showError(errId, false);
+    });
+  });
+
+</script>
+</body>
+</html>
