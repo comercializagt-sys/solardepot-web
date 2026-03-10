@@ -1208,7 +1208,7 @@
     // webhookUrl: 'https://formspree.io/f/XXXXXXXX',
     // webhookUrl: 'https://hook.eu1.make.com/XXXXXXXX',
     //
-    webhookUrl: null, // ← reemplazar null con la URL cuando esté listo
+    webhookUrl: 'https://script.google.com/macros/s/AKfycbwjeONU4e3pbYfmnGupXVs7NUxqlns4KSwzFOoEHnQkxC2lS1Gae1AetA-UGXvvnsuVOQ/exec',
   };
 
   /* ============================================================
@@ -1329,32 +1329,29 @@
      ENVÍO A WEBHOOK / CRM (descomentar cuando esté listo)
      ============================================================ */
   async function enviarLead(lead, calculo) {
-    if (!CONFIG.webhookUrl) return; // sin webhook configurado
+    if (!CONFIG.webhookUrl || CONFIG.webhookUrl.includes('REEMPLAZAR')) return;
 
     const payload = {
-      // Datos del lead
-      nombre:       lead.nombre    || '',
-      whatsapp:     lead.whatsapp,
-      email:        lead.email     || '',
-      // Datos del cálculo
-      consumo:      calculo.consumo,
-      distribuidora:calculo.distribuidora,
-      techo:        calculo.techo,
-      // Resultados
-      capacidad_kwp:    calculo.resultado.capacidad,
-      paneles:          calculo.resultado.paneles,
-      ahorro_mensual:   calculo.resultado.ahorroMensual,
-      ahorro_anual:     calculo.resultado.ahorroAnual,
-      inversion_min:    calculo.resultado.invMin,
-      inversion_max:    calculo.resultado.invMax,
-      // Metadata
-      timestamp: new Date().toISOString(),
-      fuente: 'calculadora-solar',
+      nombre:        lead.nombre      || '',
+      whatsapp:      lead.whatsapp,
+      email:         lead.email       || '',
+      consumo:       calculo.consumo,
+      distribuidora: calculo.distribuidora,
+      techo:         calculo.techo,
+      capacidad:     calculo.resultado.capacidad,
+      paneles:       calculo.resultado.paneles,
+      ahorroMensual: calculo.resultado.ahorroMensual,
+      ahorroAnual:   calculo.resultado.ahorroAnual,
+      inversionMin:  calculo.resultado.invMin,
+      inversionMax:  calculo.resultado.invMax,
+      timestamp:     new Date().toISOString(),
+      fuente:        'calculadora-solar',
     };
 
     try {
       await fetch(CONFIG.webhookUrl, {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
