@@ -157,7 +157,8 @@
     .banks-box{background:var(--off-white);border-radius:12px;padding:26px 30px}
     .banks-head{font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:16px;text-align:center}
     .banks-flex{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-    .b-tag{background:var(--white);border:1px solid var(--gray-lt);padding:8px 16px;border-radius:6px;font-size:.82rem;font-weight:600;color:var(--navy)}
+    .b-tag{background:var(--white);border:1px solid var(--gray-lt);padding:10px 16px;border-radius:6px;font-size:.82rem;font-weight:600;color:var(--navy);display:flex;align-items:center;justify-content:center}
+    .b-tag img{height:32px;width:auto;max-width:110px;object-fit:contain;display:block}
 
     /* GUARANTEES */
     .guar-sec{background:var(--off-white)}
@@ -171,7 +172,8 @@
     .brands-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.08rem;color:var(--navy-dark);margin-bottom:6px}
     .brands-s{font-size:.86rem;color:var(--gray);margin-bottom:26px}
     .brands-flex{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-    .br-chip{background:var(--white);border:1.5px solid var(--gray-lt);padding:11px 22px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.86rem;color:var(--navy);box-shadow:0 2px 8px rgba(27,58,107,.05)}
+    .br-chip{background:var(--white);border:1.5px solid var(--gray-lt);padding:14px 22px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.86rem;color:var(--navy);box-shadow:0 2px 8px rgba(27,58,107,.05);display:flex;align-items:center;justify-content:center}
+    .br-chip img{height:36px;width:auto;max-width:120px;object-fit:contain;display:block}
 
     /* TESTIMONIALS */
     .testi-sec{background:var(--navy-dark)}
@@ -351,7 +353,14 @@
     <div class="banks-box">
       <div class="banks-head">Bancos participantes con Neocuotas</div>
       <div class="banks-flex">
-        <div class="b-tag">Ficohsa</div><div class="b-tag">G&T Continental</div><div class="b-tag">Banco Promerica</div><div class="b-tag">Banco Industrial</div><div class="b-tag">BAC Credomatic</div><div class="b-tag">BAM</div><div class="b-tag">Bantrab</div><div class="b-tag">Interbanco</div>
+        <div class="b-tag"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-ficohsa.png" alt="Ficohsa"/></div>
+        <div class="b-tag"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-gyt.jpg" alt="G&T Continental"/></div>
+        <div class="b-tag"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-promerica.png" alt="Banco Promerica"/></div>
+        <div class="b-tag"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-bi.png" alt="Banco Industrial"/></div>
+        <div class="b-tag"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-bac.jpg" alt="BAC Credomatic"/></div>
+        <div class="b-tag"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-bam.png" alt="BAM"/></div>
+        <div class="b-tag"><img src="https://comercializagt-sys.github.io/solardepot-web/Logo-bantrab.jpg" alt="Bantrab"/></div>
+        <div class="b-tag"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-inter.jfif" alt="Interbanco"/></div>
       </div>
     </div>
   </div>
@@ -371,7 +380,12 @@
       <div class="brands-t">Trabajamos con marcas Tier 1</div>
       <div class="brands-s">Los mismos fabricantes que usan las plantas solares más grandes del mundo</div>
       <div class="brands-flex">
-        <div class="br-chip">LONGi Solar</div><div class="br-chip">Trina Solar</div><div class="br-chip">JA Solar</div><div class="br-chip">Jinko Solar</div><div class="br-chip">Huawei</div><div class="br-chip">SolaxPower</div>
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-longi.png" alt="LONGi Solar"/></div>
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-trinasolar.png" alt="Trina Solar"/></div>
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-jasolar.png" alt="JA Solar"/></div>
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-jinko.png" alt="Jinko Solar"/></div>
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-huawei.jpg" alt="Huawei"/></div>
+        <div class="br-chip"><img src="https://comercializagt-sys.github.io/solardepot-web/logo-solax.webp" alt="SolaxPower"/></div>
       </div>
     </div>
   </div>
@@ -383,9 +397,18 @@
     <h2 class="s-title" style="color:var(--white)">+150 familias guatemaltecas<br/>ya están ahorrando</h2>
     <p class="s-sub">Historias reales. Ahorros reales. Familias felices en toda Guatemala.</p>
     <div class="testi-grid">
-      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-txt">"Llevaba años quejándome de la factura de luz pero nunca hacía nada. Finalmente me animé y fue la mejor decisión del año. En el primer mes ya noté la diferencia."</p><div class="t-auth"><div class="t-av">JR</div><div><div class="t-name">José R. ✓ Verificado</div><div class="t-loc">Santa Rosalía, Guatemala</div></div></div><div class="t-stats"><div class="ts"><div class="ts-v">7.9 kW</div><div class="ts-k">Sistema</div></div><div class="ts"><div class="ts-v">Q1,650</div><div class="ts-k">Ahorro/mes</div></div><div class="ts"><div class="ts-v">2.3 años</div><div class="ts-k">Recupero</div></div></div></div>
-      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-txt">"Lo que más me convenció fue que la cuota del financiamiento me quedó menor a lo que ya pagaba de luz. Literalmente empecé a ahorrar desde el primer mes sin desembolsar nada."</p><div class="t-auth"><div class="t-av">MH</div><div><div class="t-name">Manuel H. ✓ Verificado</div><div class="t-loc">Fraijanes, Guatemala</div></div></div><div class="t-stats"><div class="ts"><div class="ts-v">5.8 kW</div><div class="ts-k">Sistema</div></div><div class="ts"><div class="ts-v">Q950</div><div class="ts-k">Ahorro/mes</div></div><div class="ts"><div class="ts-v">2.7 años</div><div class="ts-k">Recupero</div></div></div></div>
-      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-txt">"SolarDepot se encargó de absolutamente todo. Yo no moví un dedo. Hoy pago solo los cargos fijos de la Empresa Eléctrica. La mejor inversión que he hecho en esta propiedad."</p><div class="t-auth"><div class="t-av">GS</div><div><div class="t-name">Gerardo S. ✓ Verificado</div><div class="t-loc">Monterrico, Santa Rosa</div></div></div><div class="t-stats"><div class="ts"><div class="ts-v">13.4 kW</div><div class="ts-k">Sistema</div></div><div class="ts"><div class="ts-v">Q2,400</div><div class="ts-k">Ahorro/mes</div></div><div class="ts"><div class="ts-v">3.0 años</div><div class="ts-k">Recupero</div></div></div></div>
+      <div class="t-card">
+        <img src="https://comercializagt-sys.github.io/solardepot-web/instalacion-1.jpg" alt="Instalación solar José R." style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:18px;"/>
+        <div class="t-stars">★★★★★</div><p class="t-txt">"Llevaba años quejándome de la factura de luz pero nunca hacía nada. Finalmente me animé y fue la mejor decisión del año. En el primer mes ya noté la diferencia."</p><div class="t-auth"><div class="t-av">JR</div><div><div class="t-name">José R. ✓ Verificado</div><div class="t-loc">Santa Rosalía, Guatemala</div></div></div><div class="t-stats"><div class="ts"><div class="ts-v">7.9 kW</div><div class="ts-k">Sistema</div></div><div class="ts"><div class="ts-v">Q1,650</div><div class="ts-k">Ahorro/mes</div></div><div class="ts"><div class="ts-v">2.3 años</div><div class="ts-k">Recupero</div></div></div>
+      </div>
+      <div class="t-card">
+        <img src="https://comercializagt-sys.github.io/solardepot-web/instalacion-2.jpg" alt="Instalación solar Manuel H." style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:18px;"/>
+        <div class="t-stars">★★★★★</div><p class="t-txt">"Lo que más me convenció fue que la cuota del financiamiento me quedó menor a lo que ya pagaba de luz. Literalmente empecé a ahorrar desde el primer mes sin desembolsar nada."</p><div class="t-auth"><div class="t-av">MH</div><div><div class="t-name">Manuel H. ✓ Verificado</div><div class="t-loc">Fraijanes, Guatemala</div></div></div><div class="t-stats"><div class="ts"><div class="ts-v">5.8 kW</div><div class="ts-k">Sistema</div></div><div class="ts"><div class="ts-v">Q950</div><div class="ts-k">Ahorro/mes</div></div><div class="ts"><div class="ts-v">2.7 años</div><div class="ts-k">Recupero</div></div></div>
+      </div>
+      <div class="t-card">
+        <img src="https://comercializagt-sys.github.io/solardepot-web/instalacion-3.jpg" alt="Instalación solar Gerardo S." style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:18px;"/>
+        <div class="t-stars">★★★★★</div><p class="t-txt">"SolarDepot se encargó de absolutamente todo. Yo no moví un dedo. Hoy pago solo los cargos fijos de la Empresa Eléctrica. La mejor inversión que he hecho en esta propiedad."</p><div class="t-auth"><div class="t-av">GS</div><div><div class="t-name">Gerardo S. ✓ Verificado</div><div class="t-loc">Monterrico, Santa Rosa</div></div></div><div class="t-stats"><div class="ts"><div class="ts-v">13.4 kW</div><div class="ts-k">Sistema</div></div><div class="ts"><div class="ts-v">Q2,400</div><div class="ts-k">Ahorro/mes</div></div><div class="ts"><div class="ts-v">3.0 años</div><div class="ts-k">Recupero</div></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -407,7 +430,8 @@
   </div>
 </section>
 
-<section class="cta-sec">
+<section class="cta-sec" style="position:relative">
+  <div style="position:absolute;inset:0;background-image:url('https://comercializagt-sys.github.io/solardepot-web/instalacion-4.jpg');background-size:cover;background-position:center;opacity:0.15;"></div>
   <div class="c">
     <h2>¿Cuánto podrías<br/>ahorrar tú?</h2>
     <p>En menos de 24 horas te enviamos una cotización personalizada para tu hogar en Guatemala, sin compromiso y completamente gratis.</p>
