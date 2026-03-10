@@ -179,19 +179,21 @@
     .testi-sec{background:var(--navy-dark)}
     .testi-sec .s-tag{color:var(--blue-light)}
     .testi-sec .s-tag::before{background:var(--blue-light)}
-    .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+    .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
     .t-card{background:rgba(255,255,255,.05);border-radius:14px;padding:34px 28px;border:1px solid rgba(255,255,255,.07);transition:all .3s}
     .t-card:hover{background:rgba(43,123,200,.1)}
     .t-stars{color:var(--orange);font-size:.9rem;letter-spacing:2px;margin-bottom:16px}
     .t-txt{font-size:.9rem;color:rgba(255,255,255,.76);line-height:1.8;margin-bottom:24px;font-style:italic}
     .t-auth{display:flex;align-items:center;gap:14px}
-    .t-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--orange));display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:.88rem;color:var(--white);flex-shrink:0}
-    .t-name{font-weight:600;font-size:.9rem;color:var(--white)}
-    .t-loc{font-size:.76rem;color:rgba(255,255,255,.38);margin-top:2px}
-    .t-stats{display:flex;gap:18px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.07)}
-    .ts{text-align:center}
-    .ts-v{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;color:var(--orange)}
-    .ts-k{font-size:.7rem;color:rgba(255,255,255,.32);margin-top:2px}
+    .t-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--orange));display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:.88rem;color:var(--white);flex-shrink:0}
+    .t-name{font-weight:700;font-size:.95rem;color:var(--white)}
+    .t-verified{display:inline-flex;align-items:center;gap:4px;margin-top:5px;font-size:.75rem;font-weight:700;color:#4ADE80;letter-spacing:.3px}
+    .t-loc{font-size:.76rem;color:rgba(255,255,255,.38);margin-top:3px}
+    .t-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1)}
+    .ts{text-align:center;padding:14px 8px}
+    .ts:not(:last-child){border-right:1px solid rgba(255,255,255,.07)}
+    .ts-v{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.35rem;color:var(--orange)}
+    .ts-k{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:6px;text-transform:uppercase;letter-spacing:.8px}
 
     /* FAQ */
     .faq-wrap{max-width:740px;margin:0 auto}
@@ -262,6 +264,32 @@
   </div>
 </section>
 
+<!-- PROBLEMA / DOLOR -->
+<section style="background:var(--white)">
+  <div class="c">
+    <div class="s-tag">¿Te identificas?</div>
+    <h2 class="s-title">Pagar la factura de luz<br/>no debería ser un problema cada mes.</h2>
+    <p class="s-sub">Si alguna vez has pensado esto, la energía solar probablemente sea para ti.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:8px">
+      <div style="background:var(--off-white);border-radius:14px;padding:32px 28px;border-left:4px solid var(--blue)">
+        <div style="font-size:1.8rem;margin-bottom:12px">🤔</div>
+        <h3 style="font-size:1rem;font-weight:700;color:var(--navy-dark);margin-bottom:10px">"Mi factura de luz sube todos los meses"</h3>
+        <p style="font-size:.9rem;color:var(--gray);line-height:1.72">No es tu imaginación. La tarifa eléctrica residencial ha incrementado de forma consistente. Y seguirá haciéndolo.</p>
+      </div>
+      <div style="background:var(--off-white);border-radius:14px;padding:32px 28px;border-left:4px solid var(--blue)">
+        <div style="font-size:1.8rem;margin-bottom:12px">💭</div>
+        <h3 style="font-size:1rem;font-weight:700;color:var(--navy-dark);margin-bottom:10px">"He pensado en paneles solares pero no sé por dónde empezar"</h3>
+        <p style="font-size:.9rem;color:var(--gray);line-height:1.72">Es normal. El proceso puede parecer complicado. Por eso nos encargamos de absolutamente todo, desde el diseño hasta la activación.</p>
+      </div>
+      <div style="background:var(--off-white);border-radius:14px;padding:32px 28px;border-left:4px solid var(--blue)">
+        <div style="font-size:1.8rem;margin-bottom:12px">💡</div>
+        <h3 style="font-size:1rem;font-weight:700;color:var(--navy-dark);margin-bottom:10px">"Quiero saber si realmente vale la pena para mi casa"</h3>
+        <p style="font-size:.9rem;color:var(--gray);line-height:1.72">Buena pregunta. La respuesta depende de tu consumo. Por eso ofrecemos una cotización gratuita basada en tu recibo de luz real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="savings-sec">
   <div class="c">
     <div class="s-tag">Tu ahorro potencial</div>
@@ -305,7 +333,74 @@
   </div>
 </section>
 
-<section class="specs-sec">
+<!-- COMPENSACIÓN DE EXCEDENTES -->
+<section style="background:var(--navy-dark)">
+  <div class="c">
+    <div class="s-tag" style="color:var(--blue-light)">Cómo funciona el ahorro</div>
+    <h2 class="s-title" style="color:var(--white)">¿Qué pasa con la energía<br/>que no usas?</h2>
+    <p class="s-sub" style="color:rgba(255,255,255,.55)">Tu sistema solar no desperdicia nada. Cada kilovatio que produces pero no consumes trabaja a tu favor.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:rgba(255,255,255,.06);border-radius:14px;overflow:hidden;margin-bottom:40px">
+      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
+        <div style="width:52px;height:52px;background:rgba(43,123,200,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">☀️</div>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">Tu sistema genera energía</h3>
+        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">Durante el día los paneles producen electricidad. El sistema la usa primero dentro de tu vivienda.</p>
+      </div>
+      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
+        <div style="width:52px;height:52px;background:rgba(43,123,200,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">🔄</div>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">El excedente va a la red</h3>
+        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">Si produces más de lo que consumes, ese excedente se inyecta a la red eléctrica automáticamente.</p>
+      </div>
+      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
+        <div style="width:52px;height:52px;background:rgba(232,84,26,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">📊</div>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">El medidor lo registra</h3>
+        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">Un medidor bidireccional registra tanto lo que entra como lo que sale. Así se calcula tu compensación.</p>
+      </div>
+      <div style="background:var(--navy-dark);padding:36px 28px;text-align:center">
+        <div style="width:52px;height:52px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 16px">💰</div>
+        <h3 style="font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px">Se descuenta de tu factura</h3>
+        <p style="font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7">La energía enviada a la red se compensa contra tu consumo nocturno, reduciendo aún más tu factura mensual.</p>
+      </div>
+    </div>
+    <div style="background:rgba(43,123,200,.12);border:1px solid rgba(43,123,200,.25);border-radius:12px;padding:28px 32px;text-align:center">
+      <p style="color:rgba(255,255,255,.8);font-size:.95rem;line-height:1.75">Este esquema se llama <strong style="color:var(--blue-light)">usuario autoproductor con excedentes</strong> y está regulado. Tu instalación queda registrada formalmente ante la distribuidora con un medidor bidireccional oficial.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEÑALES DE CONFIANZA -->
+<section style="background:var(--off-white)">
+  <div class="c">
+    <div class="s-tag">Por qué SolarDepot</div>
+    <h2 class="s-title">Una empresa que sabe<br/>lo que hace. Y lo demuestra.</h2>
+    <p class="s-sub">No somos intermediarios. Somos especialistas en energía solar residencial con experiencia real en instalaciones en Guatemala.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px">
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🔩</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Instalación llave en mano</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Nos encargamos de todo: diseño, equipos, instalación y gestión del medidor. Tú no tienes que hacer nada.</p></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📐</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Diseño personalizado para tu vivienda</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Analizamos tu consumo real y diseñamos el sistema exacto que necesitas. No vendemos paquetes genéricos.</p></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🏅</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Equipos Tier 1 con garantía real</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Solo trabajamos con marcas que tienen garantías de largo plazo respaldadas por el fabricante. Sin atajos.</p></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📱</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Monitoreo y seguimiento post-instalación</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Después de instalar, puedes monitorear tu sistema desde una app y contamos con soporte para cualquier duda.</p></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🤝</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Asesoría honesta, sin presión</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Te explicamos si solar te conviene o no según tu situación. Si no es el momento adecuado, te lo decimos.</p></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:32px 28px;box-shadow:0 4px 18px rgba(27,58,107,.06);display:flex;gap:18px;align-items:flex-start">
+        <div style="width:46px;height:46px;background:var(--blue-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📋</div>
+        <div><h3 style="font-size:.98rem;font-weight:700;color:var(--navy-dark);margin-bottom:8px">Gestión completa con la distribuidora</h3><p style="font-size:.88rem;color:var(--gray);line-height:1.72">Nos encargamos de todos los trámites para registrarte como autoproductor y gestionar el medidor bidireccional.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
   <div class="c">
     <div class="s-tag">El sistema</div>
     <h2 class="s-title" style="color:var(--white)">Diseñado exactamente<br/>para tu consumo</h2>
@@ -401,15 +496,71 @@
     <div class="testi-grid">
       <div class="t-card">
         <img src="https://comercializagt-sys.github.io/solardepot-web/instalacion-1.png" alt="Instalación solar José R." style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:18px;"/>
-        <div class="t-stars">★★★★★</div><p class="t-txt">"Llevaba años quejándome de la factura de luz pero nunca hacía nada. Finalmente me animé y fue la mejor decisión del año. En el primer mes ya noté la diferencia."</p><div class="t-auth"><div class="t-av">JR</div><div><div class="t-name">José R. ✓ Verificado</div><div class="t-loc">Santa Rosalía, Guatemala</div></div></div><div class="t-stats"><div class="ts"><div class="ts-v">7.9 kW</div><div class="ts-k">Sistema</div></div><div class="ts"><div class="ts-v">Q1,650</div><div class="ts-k">Ahorro/mes</div></div><div class="ts"><div class="ts-v">2.3 años</div><div class="ts-k">Recupero</div></div></div>
+        <div class="t-stars">★★★★★</div>
+        <p class="t-txt">"Llevaba años quejándome de la factura de luz pero nunca hacía nada. Finalmente me animé y fue la mejor decisión del año. En el primer mes ya noté la diferencia."</p>
+        <div class="t-auth">
+          <div class="t-av">JR</div>
+          <div>
+            <div class="t-name">José R.</div><div class="t-verified">✔ Verificado</div>
+            <div class="t-loc">Santa Rosalía, Guatemala</div>
+          </div>
+        </div>
+        <div class="t-stats">
+          <div class="ts"><div class="ts-v">7.9 kW</div><div class="ts-k">Sistema</div></div>
+          <div class="ts"><div class="ts-v">Q1,650</div><div class="ts-k">Ahorro/mes</div></div>
+          <div class="ts"><div class="ts-v">2.3 años</div><div class="ts-k">Recupero</div></div>
+        </div>
       </div>
       <div class="t-card">
         <img src="https://comercializagt-sys.github.io/solardepot-web/instalacion-2.png" alt="Instalación solar Manuel H." style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:18px;"/>
-        <div class="t-stars">★★★★★</div><p class="t-txt">"Lo que más me convenció fue que la cuota del financiamiento me quedó menor a lo que ya pagaba de luz. Literalmente empecé a ahorrar desde el primer mes sin desembolsar nada."</p><div class="t-auth"><div class="t-av">MH</div><div><div class="t-name">Manuel H. ✓ Verificado</div><div class="t-loc">Fraijanes, Guatemala</div></div></div><div class="t-stats"><div class="ts"><div class="ts-v">5.8 kW</div><div class="ts-k">Sistema</div></div><div class="ts"><div class="ts-v">Q950</div><div class="ts-k">Ahorro/mes</div></div><div class="ts"><div class="ts-v">2.7 años</div><div class="ts-k">Recupero</div></div></div>
+        <div class="t-stars">★★★★★</div>
+        <p class="t-txt">"Lo que más me convenció fue que la cuota del financiamiento me quedó menor a lo que ya pagaba de luz. Literalmente empecé a ahorrar desde el primer mes sin desembolsar nada."</p>
+        <div class="t-auth">
+          <div class="t-av">MH</div>
+          <div>
+            <div class="t-name">Manuel H.</div><div class="t-verified">✔ Verificado</div>
+            <div class="t-loc">Fraijanes, Guatemala</div>
+          </div>
+        </div>
+        <div class="t-stats">
+          <div class="ts"><div class="ts-v">5.8 kW</div><div class="ts-k">Sistema</div></div>
+          <div class="ts"><div class="ts-v">Q950</div><div class="ts-k">Ahorro/mes</div></div>
+          <div class="ts"><div class="ts-v">2.7 años</div><div class="ts-k">Recupero</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <img src="https://comercializagt-sys.github.io/solardepot-web/instalacion-4.png" alt="Instalación solar Carlos M." style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:18px;"/>
+        <div class="t-stars">★★★★★</div>
+        <p class="t-txt">"Desde que me explicaron el proceso entendí que era simple. En menos de un mes ya tenía el sistema funcionando. El equipo de SolarDepot estuvo presente en cada paso."</p>
+        <div class="t-auth">
+          <div class="t-av">CM</div>
+          <div>
+            <div class="t-name">Carlos M.</div><div class="t-verified">✔ Verificado</div>
+            <div class="t-loc">Mixco, Guatemala</div>
+          </div>
+        </div>
+        <div class="t-stats">
+          <div class="ts"><div class="ts-v">9.2 kW</div><div class="ts-k">Sistema</div></div>
+          <div class="ts"><div class="ts-v">Q1,900</div><div class="ts-k">Ahorro/mes</div></div>
+          <div class="ts"><div class="ts-v">2.8 años</div><div class="ts-k">Recupero</div></div>
+        </div>
       </div>
       <div class="t-card">
         <img src="https://comercializagt-sys.github.io/solardepot-web/instalacion-3.png" alt="Instalación solar Gerardo S." style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:18px;"/>
-        <div class="t-stars">★★★★★</div><p class="t-txt">"SolarDepot se encargó de absolutamente todo. Yo no moví un dedo. Hoy pago solo los cargos fijos de la Empresa Eléctrica. La mejor inversión que he hecho en esta propiedad."</p><div class="t-auth"><div class="t-av">GS</div><div><div class="t-name">Gerardo S. ✓ Verificado</div><div class="t-loc">Monterrico, Santa Rosa</div></div></div><div class="t-stats"><div class="ts"><div class="ts-v">13.4 kW</div><div class="ts-k">Sistema</div></div><div class="ts"><div class="ts-v">Q2,400</div><div class="ts-k">Ahorro/mes</div></div><div class="ts"><div class="ts-v">3.0 años</div><div class="ts-k">Recupero</div></div></div>
+        <div class="t-stars">★★★★★</div>
+        <p class="t-txt">"SolarDepot se encargó de absolutamente todo. Yo no moví un dedo. Hoy pago solo los cargos fijos de la Empresa Eléctrica. La mejor inversión que he hecho en esta propiedad."</p>
+        <div class="t-auth">
+          <div class="t-av">GS</div>
+          <div>
+            <div class="t-name">Gerardo S.</div><div class="t-verified">✔ Verificado</div>
+            <div class="t-loc">Monterrico, Santa Rosa</div>
+          </div>
+        </div>
+        <div class="t-stats">
+          <div class="ts"><div class="ts-v">13.4 kW</div><div class="ts-k">Sistema</div></div>
+          <div class="ts"><div class="ts-v">Q2,400</div><div class="ts-k">Ahorro/mes</div></div>
+          <div class="ts"><div class="ts-v">3.0 años</div><div class="ts-k">Recupero</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -418,28 +569,39 @@
 <section>
   <div class="c">
     <div class="s-tag">Preguntas frecuentes</div>
-    <h2 class="s-title">Todo lo que necesitas saber<br/>sobre paneles solares en Guatemala</h2>
-    <p class="s-sub">Resolvemos las dudas más comunes sobre energía solar antes de que las tengas.</p>
+    <h2 class="s-title">Todo lo que necesitas saber<br/>sobre paneles solares</h2>
+    <p class="s-sub">Estas son las preguntas más comunes que recibimos de propietarios de vivienda interesados en instalar paneles solares. Las respondemos de forma simple para que entiendas cómo funciona el sistema, qué puedes esperar y cómo se refleja el ahorro en tu recibo de luz.</p>
     <div class="faq-wrap">
-      <details><summary>¿Cuánto puedo ahorrar con paneles solares en Guatemala? <span class="fi">+</span></summary><p>Con un sistema solar bien dimensionado para tu hogar, puedes ahorrar hasta un <strong>86% en tu factura de luz mensual</strong>. El ahorro exacto depende de tu consumo actual de la Empresa Eléctrica. Te enviamos una cotización personalizada gratuita en menos de 24 horas.</p></details>
-      <details><summary>¿Cuánto tiempo tarda la instalación de paneles solares? <span class="fi">+</span></summary><p>La instalación física en tu propiedad toma <strong>2-3 días</strong>. El proceso completo — incluyendo la gestión del cambio de medidor con la Empresa Eléctrica para registrarte como autoproductor solar — toma entre 3 y 4 semanas.</p></details>
-      <details><summary>¿Hay financiamiento disponible? ¿Necesito dar enganche? <span class="fi">+</span></summary><p>Sí, contamos con financiamiento a través de <strong>Neocuotas</strong>, con <strong>0% de enganche y sin recargo</strong>. Plazos de 24, 36 o 48 cuotas. Bancos participantes: Ficohsa, G&T Continental, Banco Promerica, Banco Industrial, BAC Credomatic, BAM, Bantrab e Interbanco.</p></details>
-      <details><summary>¿En cuánto tiempo recupero mi inversión en paneles solares? <span class="fi">+</span></summary><p>La mayoría de nuestros clientes en Guatemala recuperan su inversión en <strong>entre 2.5 - 4 años</strong>. A partir de ese punto, los más de 27 años restantes de vida útil representan ahorro puro, considerando que la tarifa de la Empresa Eléctrica sube cada año.</p></details>
-      <details><summary>¿Qué garantía tienen los paneles solares y la instalación? <span class="fi">+</span></summary><p>Los paneles tienen <strong>30 años de garantía de generación</strong>, los inversores <strong>10 años</strong> por defectos de fábrica, y la instalación <strong>2 años</strong>. Trabajamos con marcas Tier 1: LONGi Solar, Trina Solar, JA Solar, Jinko Solar, Huawei y SolaxPower.</p></details>
-      <details><summary>¿Funciona la energía solar en Guatemala con lluvia y nubes? <span class="fi">+</span></summary><p>Guatemala tiene una de las mejores radiaciones solares de Centroamérica. Los sistemas fotovoltaicos funcionan eficientemente todo el año. Los días nublados también generan energía. La temporada de lluvia no afecta significativamente el ahorro anual total.</p></details>
-      <details><summary>¿Qué mantenimiento requieren los paneles solares? <span class="fi">+</span></summary><p>Los paneles solares son extremadamente bajos en mantenimiento. Generalmente basta con una limpieza ocasional para remover polvo. El sistema incluye monitoreo en tiempo real desde tu celular para verificar que funciona correctamente.</p></details>
+      <details><summary>¿Qué son los paneles solares? <span class="fi">+</span></summary><p>Son equipos que convierten la luz del sol en electricidad para usarla en tu vivienda. Se instalan normalmente en el techo y ayudan a reducir la energía que se compra a la distribuidora.</p></details>
+      <details><summary>¿Cómo funcionan los paneles solares en una casa? <span class="fi">+</span></summary><p>Durante el día, los paneles generan electricidad y el sistema la usa primero dentro de la vivienda. Un inversor la adapta para que funcione con los equipos de la casa. Si en algún momento hace falta más energía, la toma automáticamente de la red.</p></details>
+      <details><summary>¿Qué pasa con la energía que no se usa? <span class="fi">+</span></summary><p>Cuando el sistema produce más de lo que la casa está consumiendo, ese excedente se envía a la red. El medidor bidireccional lo registra y se convierte en crédito de energía para compensar consumo posterior.</p></details>
+      <details><summary>¿La empresa eléctrica paga por la energía excedente? <span class="fi">+</span></summary><p>En el esquema residencial, normalmente no se vende energía como tal. Lo que ocurre es una compensación de excedentes: la energía enviada a la red ayuda a reducir la energía que luego se factura.</p></details>
+      <details><summary>¿Cuánto se puede ahorrar con paneles solares? <span class="fi">+</span></summary><p>Depende del consumo, del espacio disponible y del tamaño del sistema. En muchos casos, un sistema bien dimensionado puede reducir de forma importante la factura mensual y dejar solo cargos mínimos del servicio.</p></details>
+      <details><summary>¿Cuántos paneles solares necesita una casa? <span class="fi">+</span></summary><p>Se calcula con base en el recibo de luz, el consumo mensual y el área disponible para instalar. Por eso lo correcto es dimensionar cada sistema según la vivienda y no usar una cantidad estándar para todos los casos.</p></details>
+      <details><summary>¿Funcionan cuando está nublado? <span class="fi">+</span></summary><p>Sí. Los paneles siguen produciendo energía, aunque en menor nivel. Cuando la producción baja, la vivienda continúa operando con apoyo de la red, así que el suministro sigue siendo estable.</p></details>
+      <details><summary>¿Funcionan de noche? <span class="fi">+</span></summary><p>No. Los paneles generan energía solo con luz solar. En la noche, la vivienda utiliza la red eléctrica o baterías si el sistema incluye respaldo.</p></details>
+      <details><summary>¿Los paneles solares funcionan cuando se va la luz? <span class="fi">+</span></summary><p>Un sistema solar interconectado normalmente se desconecta durante un apagón por seguridad. Esto es una protección estándar. Si deseas respaldo durante cortes, se puede diseñar un sistema con baterías.</p></details>
+      <details><summary>¿Se necesitan permisos para instalar paneles solares? <span class="fi">+</span></summary><p>En instalaciones residenciales interconectadas, el proceso usual es registrar el sistema como usuario autoproductor con excedentes y gestionar la instalación del medidor bidireccional con la distribuidora.</p></details>
+      <details><summary>¿Qué es un medidor bidireccional? <span class="fi">+</span></summary><p>Es el medidor que registra tanto la energía que entra desde la red como la energía que el sistema solar envía. Gracias a este equipo se puede aplicar la compensación de excedentes.</p></details>
+      <details><summary>¿Cuánto duran los paneles solares? <span class="fi">+</span></summary><p>Los paneles están diseñados para operar por décadas. Lo normal es trabajar con equipos que ofrecen garantías de producción de largo plazo y un desempeño confiable con mantenimiento mínimo.</p></details>
+      <details><summary>¿Qué mantenimiento requieren los paneles solares? <span class="fi">+</span></summary><p>Muy poco. Generalmente se recomienda limpieza cuando hay acumulación de polvo, revisión eléctrica periódica y monitoreo del sistema para confirmar que todo opera correctamente.</p></details>
+      <details><summary>¿Cuánto espacio se necesita para instalar paneles solares? <span class="fi">+</span></summary><p>Depende de cuánta energía se quiera producir. Como referencia, cada panel ocupa alrededor de 2 metros cuadrados, por lo que el espacio disponible influye directamente en la capacidad del sistema.</p></details>
+      <details><summary>¿Los paneles solares dañan el techo? <span class="fi">+</span></summary><p>No, cuando la instalación se realiza correctamente. La estructura se fija con un sistema diseñado para el tipo de techo y se cuida la impermeabilización y la seguridad de toda la instalación.</p></details>
     </div>
   </div>
 </section>
 
 <section class="cta-sec" style="position:relative">
-  <div style="position:absolute;inset:0;background-image:url('https://comercializagt-sys.github.io/solardepot-web/instalacion-4.png');background-size:cover;background-position:center;opacity:0.15;"></div>
+  <div style="position:absolute;inset:0;background-image:url('https://comercializagt-sys.github.io/solardepot-web/instalacion-3.png');background-size:cover;background-position:center;opacity:0.15;"></div>
   <div class="c">
     <h2>¿Cuánto podrías<br/>ahorrar tú?</h2>
-    <p>En menos de 24 horas te enviamos una cotización personalizada para tu hogar en Guatemala, sin compromiso y completamente gratis.</p>
-    <a href="https://wa.me/50230821405?text=Hola,%20quiero%20mi%20cotización%20gratis%20de%20paneles%20solares" target="_blank" class="btn-cta">☀️ Quiero mi cotización gratis</a>
+    <p>Envíanos tu recibo de luz y en menos de 24 horas te enviamos una cotización personalizada con el sistema ideal para tu vivienda, sin compromiso.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative">
+      <a href="https://wa.me/50230821405?text=Hola,%20quiero%20mi%20cotización%20gratis%20de%20paneles%20solares" target="_blank" class="btn-cta">☀️ Quiero mi cotización gratis</a>
+      <a href="https://wa.me/50230821405?text=Hola,%20les%20envío%20mi%20recibo%20de%20luz%20para%20que%20me%20hagan%20una%20cotización" target="_blank" class="btn-cta" style="background:transparent;border:2px solid rgba(255,255,255,.35);box-shadow:none">📄 Enviar mi recibo de luz</a>
+    </div>
     <div class="cta-links">
-      <a href="/cdn-cgi/l/email-protection#2555574a5c4046514a5665564a4944574140554a5142510b464a48">📧 <span class="__cf_email__" data-cfemail="aededcc1d7cbcddac1ddeeddc1c2cfdccacbdec1dac9da80cdc1c3">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#a0d0d2cfd9c5c3d4cfd3e0d3cfccc1d2c4c5d0cfd4c7d48ec3cfcd">📧 <span class="__cf_email__" data-cfemail="7303011c0a1610071c0033001c1f12011716031c0714075d101c1e">[email&#160;protected]</span></a>
       <a href="tel:+50230821405">📞 +502 3082-1405</a>
       <a href="#">📍 Corporativo Spazio, Zona 15, Guatemala</a>
     </div>
@@ -447,6 +609,4 @@
 </section>
 
 <footer>
-  <p style="margin-bottom:6px"><strong>SolarDepot Guatemala</strong> — Energía Solar Para Ahorrar</p>
-  <p>Paneles Solares Guatemala | Instalación Solar Residencial | Cotización Gratis</p>
-  <p style="margin-top:14px;opa
+  <p style="margin-bottom:6px"><strong>SolarDepot Guatemala</strong> — Ene
