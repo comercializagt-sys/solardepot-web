@@ -43,12 +43,13 @@
     .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px}
     .art-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .2s;cursor:pointer;text-decoration:none;display:block;color:inherit}
     .art-card:hover{transform:translateY(-4px)}
-    .art-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:2.8rem}
-    .art-thumb.blue{background:linear-gradient(135deg,#1B3A6B,#2B7BC8)}
-    .art-thumb.orange{background:linear-gradient(135deg,#c44010,#E8541A)}
-    .art-thumb.green{background:linear-gradient(135deg,#14532d,#16a34a)}
-    .art-thumb.teal{background:linear-gradient(135deg,#164e63,#0891b2)}
-    .art-thumb.purple{background:linear-gradient(135deg,#4c1d95,#7c3aed)}
+    .art-thumb{height:180px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+    .art-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(17,36,72,.25),rgba(17,36,72,.55))}
+    .art-thumb.blue{background-color:#1B3A6B}
+    .art-thumb.orange{background-color:#c44010}
+    .art-thumb.green{background-color:#14532d}
+    .art-thumb.teal{background-color:#164e63}
+    .art-thumb.purple{background-color:#4c1d95}
     .art-body{padding:22px}
     .art-cat{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);background:#eef5fd;padding:4px 10px;border-radius:20px;margin-bottom:14px}
     .art-body h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1rem;line-height:1.35;color:var(--navy);margin-bottom:8px}
@@ -70,10 +71,11 @@
     .art-view-header .art-cat{font-size:.78rem;margin-bottom:16px}
     .art-view-header h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.2;color:var(--navy);margin-bottom:16px}
     .art-view-meta{display:flex;gap:20px;color:var(--gray);font-size:.82rem;flex-wrap:wrap}
-    .art-hero-img{width:100%;height:240px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:5rem;margin-bottom:40px}
-    .art-hero-img.blue{background:linear-gradient(135deg,#1B3A6B,#2B7BC8)}
-    .art-hero-img.teal{background:linear-gradient(135deg,#164e63,#0891b2)}
-    .art-hero-img.purple{background:linear-gradient(135deg,#4c1d95,#7c3aed)}
+    .art-hero-img{width:100%;height:280px;border-radius:var(--radius);background-size:cover;background-position:center;margin-bottom:40px;position:relative;overflow:hidden}
+    .art-hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(17,36,72,.4))}
+    .art-hero-img.blue{background-color:#1B3A6B}
+    .art-hero-img.teal{background-color:#164e63}
+    .art-hero-img.purple{background-color:#4c1d95}
 
     /* ARTICLE CONTENT STYLES */
     .art-content{color:var(--gray-dark);line-height:1.85;font-size:1rem}
@@ -164,7 +166,7 @@
     <div class="articles-grid" id="grid-articulos">
 
       <a class="art-card" data-cat="ahorro" onclick="abrirArticulo('cuanto-se-ahorra');return false;" href="#">
-        <div class="art-thumb blue">☀️</div>
+        <div class="art-thumb" style="background-image:url('https://www.dimansolar.com/wp-content/uploads/2023/05/residential-solar.jpg')"></div>
         <div class="art-body">
           <span class="art-cat">Ahorro</span><span class="badge-new">Nuevo</span>
           <h3>¿Cuánto se ahorra realmente con paneles solares en Guatemala?</h3>
@@ -174,7 +176,7 @@
       </a>
 
       <a class="art-card" data-cat="como-funciona" onclick="abrirArticulo('como-funciona');return false;" href="#">
-        <div class="art-thumb teal">⚡</div>
+        <div class="art-thumb" style="background-image:url('https://www.skyfiresolarmontana.com/wp-content/uploads/2022/09/how-do-solar-panels-work-e1663000073499.jpeg')"></div>
         <div class="art-body">
           <span class="art-cat">Cómo funciona</span><span class="badge-new">Nuevo</span>
           <h3>Cómo funciona un sistema solar residencial en Guatemala</h3>
@@ -184,7 +186,7 @@
       </a>
 
       <a class="art-card" data-cat="mitos" onclick="abrirArticulo('mitos-paneles-solares');return false;" href="#">
-        <div class="art-thumb purple">❌</div>
+        <div class="art-thumb" style="background-image:url('https://greenhomesystems.com/wp-content/uploads/2023/08/Solar-Myths-vs.-Facts.jpg')"></div>
         <div class="art-body">
           <span class="art-cat">Mitos</span><span class="badge-new">Nuevo</span>
           <h3>7 mitos sobre paneles solares que frenan la decisión</h3>
@@ -292,6 +294,7 @@ const ARTICULOS = {
   'cuanto-se-ahorra':{
     titulo:'¿Cuánto se ahorra realmente con paneles solares en Guatemala?',
     categoria:'Ahorro',tiempo:'7 min lectura',fecha:'Marzo 2025',emoji:'☀️',color:'blue',
+    img:'https://www.dimansolar.com/wp-content/uploads/2023/05/residential-solar.jpg',
     contenido:`
       <p class="art-intro">Una de las preguntas más frecuentes: <em>"¿Cuánto voy a ahorrar realmente?"</em> No con estimaciones genéricas, sino con números reales aplicados a viviendas guatemaltecas.</p>
       <p>La respuesta honesta: <strong>depende de tu consumo, tu distribuidora y el tamaño del sistema</strong>. Pero los rangos son muy concretos.</p>
@@ -335,6 +338,7 @@ const ARTICULOS = {
   'como-funciona':{
     titulo:'Cómo funciona un sistema solar residencial en Guatemala',
     categoria:'Cómo funciona',tiempo:'6 min lectura',fecha:'Marzo 2025',emoji:'⚡',color:'teal',
+    img:'https://www.skyfiresolarmontana.com/wp-content/uploads/2022/09/how-do-solar-panels-work-e1663000073499.jpeg',
     contenido:`
       <p class="art-intro">Muchas personas se interesan en la energía solar pero se detienen porque sienten que no entienden cómo funciona. Lo explicamos de forma simple, sin tecnicismos.</p>
       <h2>Los 4 componentes principales</h2>
@@ -364,6 +368,7 @@ const ARTICULOS = {
   'mitos-paneles-solares':{
     titulo:'7 mitos sobre paneles solares que frenan la decisión (y la verdad detrás de cada uno)',
     categoria:'Mitos',tiempo:'8 min lectura',fecha:'Marzo 2025',emoji:'❌',color:'purple',
+    img:'https://greenhomesystems.com/wp-content/uploads/2023/08/Solar-Myths-vs.-Facts.jpg',
     contenido:`
       <p class="art-intro">En años de instalar sistemas solares en Guatemala, hemos escuchado cientos de objeciones. La mayoría no son válidas — son mitos que circulan y frenan decisiones que realmente convienen.</p>
       <div class="mito-card"><div class="mito-header"><span class="mito-num">Mito 1</span><h2>"Los paneles solares son muy caros"</h2></div><div class="mito-body"><p><strong>La realidad:</strong> El precio de los paneles ha bajado más del 80% en la última década. Con financiamiento sin enganche disponible en los principales bancos de Guatemala, la cuota mensual puede quedar <strong>menor a lo que ya pagas de luz</strong>.</p><p>No necesitas desembolsar nada hoy para empezar a ahorrar. En 2.5 a 4 años el sistema ya se pagó solo con lo que te ahorró.</p></div></div>
@@ -391,7 +396,8 @@ function abrirArticulo(id) {
   document.getElementById('art-tiempo').textContent = '⏱ ' + a.tiempo;
   const hero = document.getElementById('art-hero-img');
   hero.className = 'art-hero-img ' + a.color;
-  hero.textContent = a.emoji;
+  hero.style.backgroundImage = "url('" + a.img + "')";
+  hero.textContent = '';
   document.getElementById('art-contenido').innerHTML = a.contenido;
   document.getElementById('vista-lista').style.display = 'none';
   document.getElementById('vista-articulo').style.display = 'block';
