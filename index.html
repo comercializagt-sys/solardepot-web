@@ -875,46 +875,191 @@
     /* ================================================================
        RESPONSIVE
     ================================================================ */
+
+    /* — NAV MOBILE — */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg) }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0 }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) }
+
+    /* — TABLET 960px — */
     @media(max-width:960px){
       nav { padding: 0 24px }
+
+      /* Hero: single column, hide photo */
       .hero { grid-template-columns: 1fr }
       .hero-right { display: none }
-      .hero-left { padding: 80px 32px }
-      .pain-inner { grid-template-columns: 1fr; gap: 48px }
-      .savings-split { grid-template-columns: 1fr; gap: 40px }
-      .fin-inner { grid-template-columns: 1fr; gap: 48px }
-      .trust-inner { grid-template-columns: 1fr; gap: 48px }
-      .ben-row { grid-template-columns: repeat(2,1fr) }
-      .ex-steps { grid-template-columns: repeat(2,1fr) }
-      .testi-grid { grid-template-columns: repeat(2,1fr) }
-      .process-steps { grid-template-columns: repeat(3,1fr); gap: 24px }
+      .hero-left { padding: 100px 32px 72px }
+
+      /* Two-col layouts → single */
+      .pain-inner       { grid-template-columns: 1fr; gap: 48px }
+      .savings-split    { grid-template-columns: 1fr; gap: 40px }
+      .fin-inner        { grid-template-columns: 1fr; gap: 48px }
+      .trust-inner      { grid-template-columns: 1fr; gap: 48px }
+      .blog-inner       { grid-template-columns: 1fr; gap: 48px }
+      .blog-2col        { grid-template-columns: 1fr !important }
+
+      /* Grids: reduce columns */
+      .ben-row          { grid-template-columns: repeat(2,1fr) }
+      .ex-steps         { grid-template-columns: repeat(2,1fr) }
+      .testi-grid       { grid-template-columns: repeat(2,1fr) }
+      .process-steps    { grid-template-columns: repeat(3,1fr); gap: 24px }
       .process-steps::before { display: none }
-      .specs-grid { grid-template-columns: repeat(2,1fr) }
-      .guar-row { grid-template-columns: repeat(2,1fr) }
-      .blog-inner { grid-template-columns: 1fr; gap: 48px }
-      .blog-2col { grid-template-columns: 1fr !important }
+      .specs-grid       { grid-template-columns: repeat(2,1fr) }
+      .guar-row         { grid-template-columns: repeat(2,1fr) }
+
+      /* Calculator */
+      .calc-section .container { max-width: 100% }
     }
+
+    /* — MOBILE 640px — */
     @media(max-width:640px){
-      section { padding: 64px 20px }
+      /* Show hamburger, hide desktop links */
+      .nav-hamburger  { display: flex }
+      .nav-links      {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--white);
+        z-index: 150;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+      }
+      .nav-links.open { display: flex }
+      .nav-links .nav-link {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--navy);
+      }
+      .nav-links .nav-cta {
+        font-size: 1rem;
+        padding: 14px 36px;
+      }
+
+      /* Sections */
+      section { padding: 56px 20px }
       .pain-sec, .testi-sec, .benefits-sec, .excedentes-sec,
-      .process-sec, .guar-sec, .faq-sec, .blog-sec { padding: 64px 20px }
-      .specs-sec { padding: 56px 20px }
-      .cta-sec { padding: 72px 20px }
-      nav { padding: 0 16px }
-      .hero-left { padding: 72px 20px 56px }
-      .hero h1 { font-size: 2.1rem }
-      .hero-actions { flex-direction: column }
-      .hero-stats { grid-template-columns: repeat(3,1fr) }
-      .stat-num { font-size: 1.4rem }
-      .ben-row { grid-template-columns: 1fr }
-      .ex-steps { grid-template-columns: 1fr }
-      .testi-grid { grid-template-columns: 1fr }
-      .process-steps { grid-template-columns: repeat(2,1fr) }
-      .guar-row { grid-template-columns: 1fr }
-      .fin-plans { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; margin-right: auto }
-      .cta-buttons { flex-direction: column; align-items: stretch }
-      .btn-cta-primary, .btn-cta-ghost { justify-content: center }
-      .cta-links { flex-direction: column; align-items: center; gap: 12px }
+      .process-sec, .guar-sec, .faq-sec, .blog-sec { padding: 56px 20px }
+      .specs-sec  { padding: 48px 20px }
+      .cta-sec    { padding: 64px 20px }
+      .fin-sec    { padding: 56px 20px }
+      nav         { padding: 0 16px }
+
+      /* Hero */
+      .hero-left     { padding: 80px 20px 56px }
+      .hero h1       { font-size: 2rem; line-height: 1.2 }
+      .hero-sub      { font-size: 1rem }
+      .hero-actions  { flex-direction: column; gap: 12px }
+      .hero-actions a{ width: 100%; justify-content: center; text-align: center }
+      .btn-primary   { width: 100%; justify-content: center }
+      .hero-stats    { grid-template-columns: repeat(3,1fr); gap: 8px }
+      .stat-num      { font-size: 1.3rem }
+      .stat-label    { font-size: .65rem }
+      .hero-proof    { flex-direction: column; align-items: flex-start; gap: 8px }
+      .proof-dots    { margin-right: 0 }
+
+      /* Pain section */
+      .pain-inner    { grid-template-columns: 1fr; gap: 32px }
+      .pain-quote blockquote { font-size: 1.5rem }
+      .pain-numbers  { grid-template-columns: repeat(2,1fr); gap: 20px }
+
+      /* Savings */
+      .savings-split { grid-template-columns: 1fr; gap: 32px }
+      .savings-photo img { height: 240px; object-fit: cover; border-radius: 12px }
+
+      /* Financing */
+      .fin-inner  { grid-template-columns: 1fr; gap: 32px }
+      .fin-plans  { grid-template-columns: 1fr; max-width: 100% }
+
+      /* Testimonials */
+      .testi-grid { grid-template-columns: 1fr; gap: 20px }
+
+      /* Process */
+      .process-steps { grid-template-columns: 1fr; gap: 0 }
+      .process-step  { display: flex; align-items: flex-start; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--gray-lt) }
+      .process-step:last-child { border-bottom: none }
+      .step-num      { font-size: 2rem; min-width: 48px; line-height: 1 }
+      .step-body     { flex: 1 }
+      .step-title    { font-size: 1rem; margin-bottom: 4px }
+      .step-desc     { font-size: .88rem }
+
+      /* Benefits */
+      .ben-row       { grid-template-columns: 1fr; gap: 0 }
+      .ben-item      { border-bottom: 1px solid var(--gray-lt); padding: 20px 0 }
+      .ben-item:last-child { border-bottom: none }
+      .ben-num       { font-size: 2.2rem }
+      .ben-title     { font-size: 1rem }
+
+      /* Excedentes */
+      .ex-steps      { grid-template-columns: 1fr; gap: 24px }
+
+      /* Specs */
+      .specs-grid    { grid-template-columns: repeat(2,1fr); gap: 16px }
+      .spec-item     { padding: 20px 16px }
+
+      /* Guarantees */
+      .guar-row      { grid-template-columns: 1fr; gap: 16px }
+
+      /* Brands */
+      .brand-logos   { gap: 24px }
+      .brand-logos img { height: 28px }
+      .bank-logos    { gap: 16px }
+      .bank-logos img { height: 22px }
+
+      /* FAQ */
+      .faq-q         { font-size: .95rem; padding: 18px 20px }
+      .faq-a         { padding: 0 20px 18px }
+
+      /* Blog */
+      .blog-inner    { grid-template-columns: 1fr; gap: 32px }
+      .blog-2col     { grid-template-columns: 1fr !important }
+      .blog-card-main .blog-img { height: 200px }
+
+      /* CTA */
+      .cta-buttons   { flex-direction: column; align-items: stretch; gap: 12px }
+      .btn-cta-primary, .btn-cta-ghost { justify-content: center; width: 100% }
+      .cta-links     { flex-direction: column; align-items: center; gap: 12px }
+      .cta-sec h2    { font-size: 1.9rem }
+
+      /* Calculator */
+      .calc-card     { padding: 32px 20px }
+      .step-indicator{ gap: 8px }
+      .prog-line     { width: 32px }
+      .results-grid  { grid-template-columns: 1fr; gap: 16px }
+
+      /* Footer */
+      footer         { padding: 48px 20px 32px }
+      .footer-inner  { flex-direction: column; gap: 32px }
+      .footer-logo-area { max-width: 100% }
+      .footer-links  { flex-direction: column; gap: 8px; align-items: flex-start }
+    }
+
+    /* — SMALL PHONES 390px — */
+    @media(max-width:390px){
+      .hero h1         { font-size: 1.75rem }
+      .hero-stats      { grid-template-columns: repeat(3,1fr) }
+      .stat-num        { font-size: 1.15rem }
+      .specs-grid      { grid-template-columns: 1fr }
+      .pain-numbers    { grid-template-columns: 1fr; gap: 16px }
     }
   </style>
 </head>
@@ -925,10 +1070,13 @@
   <div>
     <img src="https://comercializagt-sys.github.io/solardepot-web/logo-sd.png" alt="SolarDepot Guatemala — Energía Solar Para Ahorrar" style="height:54px;width:auto;max-width:280px;display:block;object-fit:contain;object-position:left"/>
   </div>
-  <div class="nav-links">
+  <div class="nav-links" id="navLinks">
     <a href="https://blog.solardepotgt.com" target="_blank" class="nav-link">Blog</a>
     <a href="https://wa.me/50230821405?text=Hola,%20quiero%20mi%20cotización%20gratis%20de%20energía%20solar" target="_blank" class="nav-cta">Cotiza gratis</a>
   </div>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -2065,5 +2213,36 @@
   });
 
 </script>
+
+<!-- NAV HAMBURGER MOBILE -->
+<script>
+(function(){
+  var btn  = document.getElementById('navHamburger');
+  var menu = document.getElementById('navLinks');
+  if (!btn || !menu) return;
+
+  function toggleMenu(open){
+    btn.classList.toggle('open', open);
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  btn.addEventListener('click', function(){
+    toggleMenu(!menu.classList.contains('open'));
+  });
+
+  // Cierra el menú al hacer clic en un enlace
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ toggleMenu(false); });
+  });
+
+  // Cierra al presionar Escape
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') toggleMenu(false);
+  });
+})();
+</script>
+
 </body>
 </html>
