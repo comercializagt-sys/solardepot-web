@@ -867,11 +867,174 @@
     .wa svg { width: 26px; height: 26px }
 
     /* ================================================================
-       ANIMATIONS
+       ANIMATION TOKENS  — Emil Kowalski curves
     ================================================================ */
-    @keyframes up { from { opacity:0; transform:translateY(18px) } to { opacity:1; transform:translateY(0) } }
-    @keyframes pulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 6px 36px rgba(37,211,102,.65)} }
-    .wa { animation: pulse 2.8s infinite }
+    :root {
+      --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+      --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    /* ================================================================
+       HERO ENTRANCE  — @starting-style, CSS animation, stagger
+       Tier: rare/first-time (marketing page)  |  Purpose: delight
+       Tool: CSS @keyframes (off main thread, predetermined motion)
+       Props: opacity + translateY  |  Curve: ease-out strong
+    ================================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px) }
+      to   { opacity: 1; transform: translateY(0) }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0 }
+      to   { opacity: 1 }
+    }
+
+    .hero-proof    { animation: fadeUp .55s var(--ease-out) both; animation-delay: .08s }
+    .hero h1       { animation: fadeUp .65s var(--ease-out) both; animation-delay: .18s }
+    .hero-sub      { animation: fadeUp .6s  var(--ease-out) both; animation-delay: .30s }
+    .hero-actions  { animation: fadeUp .6s  var(--ease-out) both; animation-delay: .40s }
+    .hero-stats    { animation: fadeUp .55s var(--ease-out) both; animation-delay: .52s }
+    .hero-badge    { animation: fadeIn .7s  var(--ease-out) both; animation-delay: .65s }
+
+    /* ================================================================
+       SCROLL REVEAL  — applied by IntersectionObserver
+       Tier: occasional (sections scroll into view once)
+       Purpose: preventing jarring change / spatial consistency
+       Tool: CSS transitions (toggling a class)
+       Props: opacity + translateY  |  Curve: ease-out strong
+    ================================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s var(--ease-out), transform .65s var(--ease-out);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger delays for child items in grids */
+    .reveal-stagger > *:nth-child(1) { transition-delay: 0s }
+    .reveal-stagger > *:nth-child(2) { transition-delay: .07s }
+    .reveal-stagger > *:nth-child(3) { transition-delay: .14s }
+    .reveal-stagger > *:nth-child(4) { transition-delay: .21s }
+    .reveal-stagger > *:nth-child(5) { transition-delay: .28s }
+    .reveal-stagger > *:nth-child(6) { transition-delay: .35s }
+
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s var(--ease-out), transform .55s var(--ease-out);
+    }
+    .reveal-stagger.visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================================================================
+       SAVINGS BARS  — animate width when visible
+       Tier: occasional  |  Purpose: explanation (shows the contrast)
+       Tool: CSS transition on width (triggered by class swap)
+    ================================================================ */
+    .sv-bar-fill {
+      transition: width 1.1s var(--ease-out) !important;
+      width: 0% !important;
+    }
+    .sv-bar-fill.animated.bad  { width: 100% !important }
+    .sv-bar-fill.animated.good { width: 14%  !important }
+
+    /* ================================================================
+       FAQ CONTENT REVEAL
+       Tier: occasional  |  Purpose: preventing jarring change
+       Tool: CSS transition on grid-template-rows
+    ================================================================ */
+    details > p {
+      overflow: hidden;
+      margin-top: 0;
+      padding-top: 0;
+      transition: margin-top .22s var(--ease-out), padding-top .22s var(--ease-out), opacity .22s var(--ease-out);
+      opacity: 0;
+    }
+    details[open] > p {
+      margin-top: 12px;
+      padding-top: 0;
+      opacity: 1;
+    }
+
+    /* ================================================================
+       HOVER REFINEMENTS
+       Tier: tens of times/day  |  Purpose: feedback
+       Tool: CSS transitions, gated by hover+fine pointer
+       Duration: 160–200ms max
+    ================================================================ */
+
+    /* Cards — lift effect, refined timing */
+    .t-card {
+      transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out) !important;
+    }
+    .guar-card {
+      transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out), border-color .2s;
+    }
+    .blog-link {
+      transition: border-color .18s, background .18s, transform .18s var(--ease-out) !important;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .t-card:hover   { transform: translateY(-5px); box-shadow: var(--shadow-md) }
+      .guar-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--blue-lt) }
+      .blog-link:hover { transform: translateY(-2px) }
+      .fin-plan:hover  { transform: translateY(-3px) }
+
+      /* Brand logos — opacity only, no layout shift */
+      .br-chip img { transition: filter .2s, opacity .2s }
+      .br-chip:hover img { filter: none; opacity: 1 }
+    }
+
+    /* Primary buttons — press feedback */
+    .btn-primary, .btn-cta-primary {
+      transition: background .18s, transform .14s var(--ease-out), box-shadow .18s !important;
+    }
+    .btn-primary:active, .btn-cta-primary:active {
+      transform: translateY(0) scale(0.98) !important;
+    }
+
+    /* ================================================================
+       WHATSAPP FAB  — pulse on scale (GPU-composited), not box-shadow
+       Tier: constant  |  Purpose: state indication (always available)
+    ================================================================ */
+    @keyframes waPulse {
+      0%, 100% { transform: scale(1) }
+      50%       { transform: scale(1.07) }
+    }
+    .wa { animation: waPulse 2.8s var(--ease-in-out) infinite }
+
+    @media (hover: hover) and (pointer: fine) {
+      .wa:hover {
+        transform: scale(1.1) !important;
+        animation-play-state: paused;
+        transition: transform .16s var(--ease-out);
+      }
+    }
+
+    /* ================================================================
+       REDUCED MOTION  — gentler, not zero
+    ================================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-proof, .hero h1, .hero-sub, .hero-actions, .hero-stats, .hero-badge {
+        animation: fadeIn .3s ease both;
+      }
+      .reveal, .reveal-stagger > * {
+        transition: opacity .3s ease !important;
+        transform: none !important;
+      }
+      .reveal.visible, .reveal-stagger.visible > * {
+        opacity: 1;
+      }
+      .sv-bar-fill { transition: width .4s ease !important }
+      .wa { animation: waPulse 4s ease infinite }
+      details > p { transition: opacity .15s ease }
+    }
 
     /* ================================================================
        RESPONSIVE
@@ -1848,7 +2011,7 @@
 
 <!-- DOLOR / PROBLEMA -->
 <section class="pain-sec">
-  <div class="pain-inner">
+  <div class="pain-inner reveal">
     <div class="pain-left">
       <span class="eyebrow">Reconoces esto</span>
       <h2 class="section-title" style="margin-bottom:18px">Pagar la factura no debería ser un problema cada mes.</h2>
@@ -2019,7 +2182,7 @@
 ================================================================ -->
 <section class="savings-sec">
   <div class="c">
-    <div class="savings-split">
+    <div class="savings-split reveal">
       <div class="savings-left">
         <span class="eyebrow">Tu ahorro potencial</span>
         <h2 class="section-title">¿Cuánto podrías dejar de pagar?</h2>
@@ -2069,7 +2232,7 @@
 ================================================================ -->
 <section class="fin-sec">
   <div class="c">
-    <div class="fin-inner">
+    <div class="fin-inner reveal">
       <div class="fin-left">
         <span class="eyebrow" style="color:var(--blue-lt)">Financiamiento</span>
         <h2 class="section-title" style="color:var(--white)">Empieza a ahorrar sin desembolso inicial</h2>
@@ -2128,7 +2291,7 @@
       <h2 class="section-title" style="color:var(--white)">+150 familias guatemaltecas ya están ahorrando</h2>
       <p class="section-lead" style="color:rgba(255,255,255,.5);max-width:480px">Historias reales. Ahorros reales. Familias que tomaron la decisión y no volvieron a mirar atrás.</p>
     </div>
-    <div class="testi-grid">
+    <div class="testi-grid reveal-stagger">
       <div class="t-card">
         <img src="https://comercializagt-sys.github.io/solardepot-web/instalacion-1.png" alt="Instalación solar — José R." />
         <div class="t-body">
@@ -2200,7 +2363,7 @@
       <h2 class="section-title">Desde hoy hasta tu primer ahorro</h2>
       <p class="section-lead">En menos de 4 semanas puedes estar generando tu propia energía solar y ahorrando en tu factura.</p>
     </div>
-    <div class="process-steps">
+    <div class="process-steps reveal-stagger">
       <div class="ps-item">
         <div class="ps-num">1</div>
         <div class="ps-body">
@@ -2250,7 +2413,7 @@
 ================================================================ -->
 <section class="trust-sec">
   <div class="c">
-    <div class="trust-inner">
+    <div class="trust-inner reveal">
       <div class="trust-text">
         <span class="eyebrow" style="color:var(--blue-lt)">Por qué SolarDepot</span>
         <h2 class="section-title" style="color:var(--white)">Una empresa que sabe lo que hace. Y lo demuestra.</h2>
@@ -2325,7 +2488,7 @@
       <span class="eyebrow">Por qué solar</span>
       <h2 class="section-title">La tarifa eléctrica sube cada año.<br/>Con energía solar no te afecta.</h2>
     </div>
-    <div class="ben-row">
+    <div class="ben-row reveal-stagger">
       <div class="ben-item">
         <div class="ben-n">01</div>
         <div class="ben-body">
@@ -2382,7 +2545,7 @@
       <h2 class="section-title" style="color:var(--white)">¿Qué pasa con la energía que no usas?</h2>
       <p class="section-lead" style="color:rgba(255,255,255,.52);max-width:520px">Tu sistema solar no desperdicia nada. Cada kilovatio que produces pero no consumes trabaja a tu favor.</p>
     </div>
-    <div class="ex-steps">
+    <div class="ex-steps reveal-stagger">
       <div class="ex-item">
         <div class="ex-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -2428,7 +2591,7 @@
       <h2 class="section-title" style="color:var(--white)">Diseñado exactamente para tu consumo</h2>
       <p class="section-lead" style="color:rgba(255,255,255,.52)">Analizamos tu factura y diseñamos el sistema solar perfecto para cubrir el 100% de tu consumo actual.</p>
     </div>
-    <div class="specs-grid">
+    <div class="specs-grid reveal-stagger">
       <div class="sp-item">
         <div class="sp-num">100<span class="u">%</span></div>
         <div class="sp-lbl">Cobertura de tu consumo actual<br/><span style="font-size:.78rem;opacity:.7;font-weight:400">(según superficie disponible del techo)</span></div>
@@ -2459,7 +2622,7 @@
       <h2 class="section-title">Si algo falla, nosotros respondemos</h2>
       <p class="section-lead">Trabajamos con las marcas de paneles solares más confiables del mercado y respaldamos cada instalación.</p>
     </div>
-    <div class="guar-row">
+    <div class="guar-row reveal-stagger">
       <div class="guar-card">
         <div class="gy">30<span> años</span></div>
         <div class="gt">Paneles Solares</div>
@@ -2476,7 +2639,7 @@
         <div class="gd">Garantía en mano de obra y cableado eléctrico. Cualquier falla de instalación es nuestra responsabilidad.</div>
       </div>
     </div>
-    <div class="brands-wrapper">
+    <div class="brands-wrapper reveal">
       <div class="brands-title">Trabajamos con marcas Tier 1</div>
       <div class="brands-sub">Los mismos fabricantes que usan las plantas solares más grandes del mundo</div>
       <div class="brands-flex">
@@ -2496,12 +2659,12 @@
 ================================================================ -->
 <section class="faq-sec">
   <div class="c">
-    <div class="faq-header">
+    <div class="faq-header reveal">
       <span class="eyebrow">Preguntas frecuentes</span>
       <h2 class="section-title">Todo lo que necesitas saber sobre paneles solares</h2>
       <p class="section-lead">Respondemos las preguntas más comunes de forma simple, para que entiendas cómo funciona el sistema y qué puedes esperar.</p>
     </div>
-    <div class="faq-wrap">
+    <div class="faq-wrap reveal">
       <details><summary>¿Qué son los paneles solares? <span class="fi">+</span></summary><p>Son equipos que convierten la luz del sol en electricidad para usarla en tu vivienda. Se instalan normalmente en el techo y ayudan a reducir la energía que se compra a la distribuidora.</p></details>
       <details><summary>¿Cómo funcionan los paneles solares en una casa? <span class="fi">+</span></summary><p>Durante el día, los paneles generan electricidad y el sistema la usa primero dentro de la vivienda. Un inversor la adapta para que funcione con los equipos de la casa. Si en algún momento hace falta más energía, la toma automáticamente de la red.</p></details>
       <details><summary>¿Qué pasa con la energía que no se usa? <span class="fi">+</span></summary><p>Cuando el sistema produce más de lo que la casa está consumiendo, ese excedente se envía a la red. El medidor bidireccional lo registra y se convierte en crédito de energía para compensar consumo posterior.</p></details>
@@ -2526,7 +2689,7 @@
 ================================================================ -->
 <section class="blog-sec">
   <div class="c">
-    <div class="blog-inner">
+    <div class="blog-inner reveal">
       <div class="blog-left">
         <span class="eyebrow">Aprende antes de decidir</span>
         <h2 class="section-title">Todo lo que necesitas saber sobre energía solar</h2>
@@ -2578,7 +2741,7 @@
      CTA FINAL
 ================================================================ -->
 <section class="cta-sec">
-  <div class="c">
+  <div class="c reveal">
     <h2>El primer paso es gratis<br/><span>y no te compromete a nada.</span></h2>
     <p>Envíanos tu recibo de luz y en menos de 24 horas te enviamos una cotización personalizada con el sistema ideal para tu vivienda.</p>
     <div class="cta-buttons">
@@ -2954,6 +3117,52 @@
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape') toggleMenu(false);
   });
+})();
+</script>
+
+<script>
+/* ============================================================
+   SCROLL REVEAL — IntersectionObserver (Emil Kowalski style)
+   Tier: rare/first-time (marketing page)
+   Purpose: spatial consistency + explanation
+   Tool: CSS transitions toggled by JS class
+   ============================================================ */
+(function () {
+  // Respect reduced motion: skip motion triggers (CSS already handles opacity-only fallback)
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Generic reveal: .reveal → add .visible
+  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  if (revealEls.length) {
+    const revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    revealEls.forEach(function (el) { revealObs.observe(el); });
+  }
+
+  // Savings bars: animate width 0 → target when section enters view
+  var savingsSec = document.querySelector('.savings-sec');
+  if (savingsSec) {
+    var barObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.sv-bar-fill').forEach(function (bar) {
+            bar.classList.add('animated');
+          });
+          barObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    barObs.observe(savingsSec);
+  }
 })();
 </script>
 
