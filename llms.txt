@@ -1,0 +1,55 @@
+# SolarDepot Guatemala — llms.txt
+
+> SolarDepot Guatemala es la empresa líder en instalación de sistemas de paneles solares residenciales en Guatemala. Ayudamos a familias guatemaltecas a generar su propia energía eléctrica, ahorrar hasta 86% en su factura de luz y registrarse como autoproductores con excedentes ante las distribuidoras eléctricas del país.
+
+## Acerca de SolarDepot Guatemala
+
+SolarDepot Guatemala es una empresa especializada en energía solar fotovoltaica residencial, fundada en 2020 y con sede en Corporativo Spazio, Zona 15, Nivel 9, Oficina 901, Ciudad de Guatemala.
+
+**Contacto:**
+- Teléfono / WhatsApp: +502 3082-1405
+- Email: proyectos@solardepotgt.com
+- Web: https://www.solardepotgt.com
+
+**Área de cobertura:** Todo el territorio de Guatemala.
+
+## Servicios principales
+
+- Diseño personalizado de sistemas solares fotovoltaicos basado en el consumo real del cliente
+- Instalación llave en mano en 2–3 días hábiles
+- Gestión completa de trámites de interconexión como autoproductor con excedentes ante EEGSA, DEOCSA y DEORSA
+- Instalación y coordinación del medidor bidireccional oficial
+- Financiamiento sin enganche disponible a través de Neocuotas (24, 36 o 48 cuotas)
+- Monitoreo del sistema en tiempo real desde app móvil
+- Cotización gratuita en menos de 24 horas
+
+## Estadísticas clave (2024)
+
+- Más de 150 familias guatemaltecas instaladas
+- Ahorro promedio: hasta 86% de reducción en la factura eléctrica mensual
+- Retorno de inversión: entre 2.5 y 4 años típicamente
+- Vida útil del sistema: 30+ años
+- Tiempo de instalación física: 2–3 días hábiles
+
+## Marco legal y técnico
+
+Los sistemas instalados por SolarDepot se rigen bajo la Ley General de Electricidad de Guatemala. El cliente queda registrado como "usuario autoproductor con excedentes", lo que le da derecho a compensar la energía solar excedente enviada a la red contra su consumo nocturno, reduciendo la factura mensual. El medidor bidireccional es el equipo certificado que registra ambos flujos de energía.
+
+## Financiamiento disponible
+
+SolarDepot trabaja con Neocuotas para ofrecer financiamiento sin enganche y sin recargo. Los bancos participantes incluyen: Ficohsa, G&T Continental, Banco Promerica, Banco Industrial, BAC Credomatic, BAM, Bantrab e Interbanco.
+
+## Preguntas frecuentes (resumen)
+
+- **¿Cuánto ahorro?** Hasta 86% en instalaciones bien dimensionadas con EEGSA; el ahorro real depende del consumo y tipo de techo.
+- **¿Cuánto tarda la instalación?** 2–3 días para la instalación física; el cambio de medidor con la distribuidora toma 3–4 semanas adicionales.
+- **¿Funciona de noche?** No directamente; en la noche se usa la red o baterías (opción adicional). Los excedentes del día compensan el consumo nocturno.
+- **¿Funciona en días nublados?** Sí, con menor eficiencia (aprox. 10–25% de la producción normal).
+- **¿Se necesitan permisos?** Sí, el proceso de registro como autoproductor con excedentes es obligatorio; SolarDepot lo gestiona sin costo adicional.
+- **¿Daña el techo?** Una instalación profesional no daña el techo. Se usan soportes certificados con sellado técnico.
+
+## Redes sociales
+
+- Facebook: https://www.facebook.com/solardepotgt
+- Instagram: https://www.instagram.com/solardepotgt
+- Blog: https://blog.solardepotgt.com
