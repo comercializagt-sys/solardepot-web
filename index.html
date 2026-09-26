@@ -27,7 +27,6 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"SolarDepot Guatemala","url":"https://www.solardepotgt.com","telephone":"+502-3082-1405","email":"proyectos@solardepotgt.com","description":"Instalación de paneles solares residenciales en Guatemala. Ahorra hasta 86% en tu factura de luz.","address":{"@type":"PostalAddress","streetAddress":"Corporativo Spazio, Zona 15, Nivel 9, Oficina 901","addressLocality":"Guatemala City","addressCountry":"GT"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"150"},"image":"https://comercializagt-sys.github.io/solardepot-web/instalacion-1.png","priceRange":"$$","openingHours":"Mo-Fr 08:00-18:00","sameAs":[]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué son los paneles solares?","acceptedAnswer":{"@type":"Answer","text":"Son equipos que convierten la luz del sol en electricidad para usarla en tu vivienda. Se instalan normalmente en el techo y ayudan a reducir la energía que se compra a la distribuidora."}},{"@type":"Question","name":"¿Cómo funcionan los paneles solares en una casa?","acceptedAnswer":{"@type":"Answer","text":"Durante el día, los paneles generan electricidad y el sistema la usa primero dentro de la vivienda. Un inversor la adapta para que funcione con los equipos de la casa. Si en algún momento hace falta más energía, la toma automáticamente de la red."}},{"@type":"Question","name":"¿Qué pasa con la energía que no se usa?","acceptedAnswer":{"@type":"Answer","text":"Cuando el sistema produce más de lo que la casa está consumiendo, ese excedente se envía a la red. El medidor bidireccional lo registra y se convierte en crédito de energía para compensar consumo posterior."}},{"@type":"Question","name":"¿La empresa eléctrica paga por la energía excedente?","acceptedAnswer":{"@type":"Answer","text":"En el esquema residencial, normalmente no se vende energía como tal. Lo que ocurre es una compensación de excedentes: la energía enviada a la red ayuda a reducir la energía que luego se factura."}},{"@type":"Question","name":"¿Cuánto se puede ahorrar con paneles solares?","acceptedAnswer":{"@type":"Answer","text":"Depende del consumo, del espacio disponible y del tamaño del sistema. En muchos casos, un sistema bien dimensionado puede reducir de forma importante la factura mensual y dejar solo cargos mínimos del servicio."}},{"@type":"Question","name":"¿Cuántos paneles solares necesita una casa?","acceptedAnswer":{"@type":"Answer","text":"Se calcula con base en el recibo de luz, el consumo mensual y el área disponible para instalar. Por eso lo correcto es dimensionar cada sistema según la vivienda y no usar una cantidad estándar para todos los casos."}},{"@type":"Question","name":"¿Los paneles solares funcionan cuando está nublado?","acceptedAnswer":{"@type":"Answer","text":"Sí. Los paneles siguen produciendo energía, aunque en menor nivel. Cuando la producción baja, la vivienda continúa operando con apoyo de la red, así que el suministro sigue siendo estable."}},{"@type":"Question","name":"¿Los paneles solares funcionan de noche?","acceptedAnswer":{"@type":"Answer","text":"No. Los paneles generan energía solo con luz solar. En la noche, la vivienda utiliza la red eléctrica o baterías si el sistema incluye respaldo."}},{"@type":"Question","name":"¿Los paneles solares funcionan cuando se va la luz?","acceptedAnswer":{"@type":"Answer","text":"Un sistema solar interconectado normalmente se desconecta durante un apagón por seguridad. Si deseas respaldo durante cortes, se puede diseñar un sistema con baterías."}},{"@type":"Question","name":"¿Se necesitan permisos para instalar paneles solares?","acceptedAnswer":{"@type":"Answer","text":"En instalaciones residenciales interconectadas, el proceso usual es registrar el sistema como usuario autoproductor con excedentes y gestionar la instalación del medidor bidireccional con la distribuidora."}},{"@type":"Question","name":"¿Qué es un medidor bidireccional?","acceptedAnswer":{"@type":"Answer","text":"Es el medidor que registra tanto la energía que entra desde la red como la energía que el sistema solar envía. Gracias a este equipo se puede aplicar la compensación de excedentes."}},{"@type":"Question","name":"¿Cuánto duran los paneles solares?","acceptedAnswer":{"@type":"Answer","text":"Los paneles están diseñados para operar por décadas. Lo normal es trabajar con equipos que ofrecen garantías de producción de largo plazo y un desempeño confiable con mantenimiento mínimo."}},{"@type":"Question","name":"¿Qué mantenimiento requieren los paneles solares?","acceptedAnswer":{"@type":"Answer","text":"Muy poco. Generalmente se recomienda limpieza cuando hay acumulación de polvo, revisión eléctrica periódica y monitoreo del sistema para confirmar que todo opera correctamente."}},{"@type":"Question","name":"¿Cuánto espacio se necesita para instalar paneles solares?","acceptedAnswer":{"@type":"Answer","text":"Depende de cuánta energía se quiera producir. Como referencia, cada panel ocupa alrededor de 2 metros cuadrados, por lo que el espacio disponible influye directamente en la capacidad del sistema."}},{"@type":"Question","name":"¿Los paneles solares dañan el techo?","acceptedAnswer":{"@type":"Answer","text":"No, cuando la instalación se realiza correctamente. La estructura se fija con un sistema diseñado para el tipo de techo y se cuida la impermeabilización y la seguridad de toda la instalación."}}]}</script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
     /* ================================================================
        DESIGN TOKENS
@@ -65,6 +64,28 @@
       -webkit-font-smoothing: antialiased;
     }
     h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif }
+
+    /* ================================================================
+       BROWSER SURFACES — craft-floor: theme what you didn't draw
+    ================================================================ */
+    ::selection { background: var(--orange); color: var(--white) }
+    ::-moz-selection { background: var(--orange); color: var(--white) }
+
+    :focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    input, textarea, select { caret-color: var(--orange) }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px }
+    ::-webkit-scrollbar-track { background: var(--cream) }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gray-lt);
+      border-radius: 99px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gray) }
 
     /* ================================================================
        NAV
@@ -145,6 +166,7 @@
       font-size: clamp(2.4rem, 4.5vw, 3.6rem);
       font-weight: 900;
       line-height: 1.06;
+      text-wrap: balance;
       letter-spacing: -1.5px;
       color: var(--navy);
       margin-bottom: 22px;
@@ -248,21 +270,18 @@
     .c { max-width: 1100px; margin: 0 auto }
     .c-narrow { max-width: 800px; margin: 0 auto }
 
-    /* Label — small, simple, no ALL-CAPS with dash */
-    .eyebrow {
-      display: inline-block;
-      font-size: .78rem; font-weight: 700;
-      letter-spacing: 1.2px; text-transform: uppercase;
-      color: var(--orange); margin-bottom: 14px;
-    }
-    .eyebrow-blue { color: var(--blue) }
-    .eyebrow-muted { color: rgba(255,255,255,.45) }
+    /* Eyebrow class kept for DOM compatibility but visually suppressed — */
+    /* craft-floor absolute ban: heading carries its own weight           */
+    .eyebrow { display: none }
+    .eyebrow-blue { display: none }
+    .eyebrow-muted { display: none }
 
     .section-title {
       font-size: clamp(1.7rem, 3.2vw, 2.5rem);
       font-weight: 800; line-height: 1.16;
       letter-spacing: -.5px; color: var(--navy);
       margin-bottom: 16px;
+      text-wrap: balance;
     }
     .section-title-light { color: var(--white) }
     .section-lead {
@@ -283,13 +302,20 @@
     .pain-left .section-lead { max-width: 100%; margin-bottom: 36px }
     .pain-quote {
       font-family: 'Montserrat', sans-serif;
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
       font-weight: 700; line-height: 1.5;
-      color: var(--navy); margin-bottom: 10px;
-      padding-left: 20px;
-      border-left: 3px solid var(--orange);
+      color: var(--navy); margin-bottom: 8px;
+      position: relative; padding-left: 0;
     }
-    .pain-note { font-size: .86rem; color: var(--gray); padding-left: 23px; margin-bottom: 24px; line-height: 1.6 }
+    .pain-quote::before {
+      content: '\201C';
+      position: absolute; left: -2px; top: -4px;
+      font-size: 2.4em; line-height: 1;
+      color: var(--orange); opacity: .35;
+      font-family: Georgia, serif; font-weight: 900;
+      transform: translateX(-100%) translateX(-4px);
+    }
+    .pain-note { font-size: .86rem; color: var(--gray); margin-bottom: 24px; line-height: 1.6 }
 
     .pain-right { }
     .pain-number-block {
@@ -438,7 +464,7 @@
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.09);
       border-radius: 8px; padding: 20px 16px; text-align: center;
-      position: relative; transition: all .2s;
+      position: relative; transition: background .2s, border-color .2s, transform .2s;
     }
     .fin-plan.feat {
       background: rgba(214,79,24,.15);
@@ -559,7 +585,7 @@
       margin: 0 auto 20px;
       font-family: 'Montserrat', sans-serif; font-weight: 900;
       font-size: .95rem; color: var(--gray);
-      transition: all .3s;
+      transition: background .25s, border-color .25s, color .25s;
     }
     .ps-item:hover .ps-num {
       border-color: var(--navy); color: var(--navy);
@@ -588,7 +614,7 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
     }
     .trust-left .section-title { color: var(--white); margin-bottom: 14px }
-    .trust-left .section-lead { color: rgba(255,255,255,.52); margin-bottom: 36px }
+    .trust-left .section-lead { color: rgba(255,255,255,.7); margin-bottom: 36px }
     .trust-cta {
       background: var(--white); color: var(--navy);
       padding: 14px 28px; border-radius: 5px;
@@ -613,7 +639,7 @@
     }
     .trust-icon svg { width: 20px; height: 20px; color: var(--blue-lt) }
     .trust-item h3 { font-size: .95rem; font-weight: 700; color: var(--white); margin-bottom: 5px }
-    .trust-item p { font-size: .84rem; color: rgba(255,255,255,.48); line-height: 1.65 }
+    .trust-item p { font-size: .84rem; color: rgba(255,255,255,.68); line-height: 1.65 }
 
     /* ================================================================
        BENEFITS  — typographic row layout
@@ -667,7 +693,7 @@
     .ex-icon.c3 svg { color: var(--orange-lt) }
     .ex-icon.c4 svg { color: #4ade80 }
     .ex-title { font-size: .9rem; font-weight: 700; color: var(--white); margin-bottom: 8px }
-    .ex-text { font-size: .8rem; color: rgba(255,255,255,.45); line-height: 1.65 }
+    .ex-text { font-size: .8rem; color: rgba(255,255,255,.68); line-height: 1.65 }
 
     .excedentes-note {
       max-width: 1100px; margin: 0 auto;
@@ -697,7 +723,7 @@
       font-size: 2.8rem; color: var(--blue-lt); line-height: 1; margin-bottom: 10px;
     }
     .sp-num .u { font-size: 1.1rem; color: var(--orange) }
-    .sp-label { font-size: .82rem; color: rgba(255,255,255,.42); line-height: 1.5 }
+    .sp-label { font-size: .82rem; color: rgba(255,255,255,.7); line-height: 1.5 }
 
     /* ================================================================
        GUARANTEES
@@ -731,7 +757,7 @@
     .br-chip img {
       height: 52px; width: auto; max-width: 140px;
       object-fit: contain; display: block; padding: 8px 16px;
-      filter: grayscale(1); opacity: .6; transition: all .2s;
+      filter: grayscale(1); opacity: .6; transition: filter .2s, opacity .2s;
     }
     .br-chip:hover img { filter: none; opacity: 1 }
 
@@ -797,7 +823,7 @@
        CTA FINAL
     ================================================================ */
     .cta-sec {
-      background: var(--navy); padding: 100px 48px; text-align: center;
+      background: var(--navy); padding: 120px 48px; text-align: center;
       position: relative; overflow: hidden;
     }
     .cta-sec::before {
@@ -805,30 +831,33 @@
       position: absolute; inset: 0;
       background-image: url('https://comercializagt-sys.github.io/solardepot-web/instalacion-3.png');
       background-size: cover; background-position: center;
-      opacity: 0.08;
+      opacity: 0.11;
     }
     .cta-sec .c { position: relative }
     .cta-sec h2 {
-      font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900;
-      color: var(--white); letter-spacing: -.5px; margin-bottom: 14px;
+      font-size: clamp(2.2rem, 4.8vw, 3.4rem); font-weight: 900;
+      color: var(--white); letter-spacing: -.8px; margin-bottom: 18px;
+      text-wrap: balance;
+      line-height: 1.08;
     }
     .cta-sec h2 span { color: var(--orange) }
     .cta-sec p {
-      color: rgba(255,255,255,.6); font-size: 1rem;
-      max-width: 440px; margin: 0 auto 40px; line-height: 1.72;
+      color: rgba(255,255,255,.72); font-size: 1.05rem;
+      max-width: 480px; margin: 0 auto 44px; line-height: 1.78;
     }
     .cta-buttons {
       display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px;
     }
     .btn-cta-primary {
       background: var(--orange); color: var(--white);
-      padding: 16px 36px; border-radius: 6px;
-      font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: .98rem;
+      padding: 18px 42px; border-radius: 6px;
+      font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem;
       text-decoration: none;
-      box-shadow: 0 6px 24px rgba(214,79,24,.45);
-      transition: all .2s; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 8px 32px rgba(214,79,24,.5);
+      transition: background .2s, transform .15s, box-shadow .2s;
+      display: inline-flex; align-items: center; gap: 10px;
     }
-    .btn-cta-primary:hover { background: var(--orange-lt); transform: translateY(-2px) }
+    .btn-cta-primary:hover { background: var(--orange-lt); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(214,79,24,.55) }
     .btn-cta-ghost {
       background: transparent; color: var(--white);
       padding: 15px 32px; border-radius: 6px;
@@ -838,7 +867,7 @@
     }
     .btn-cta-ghost:hover { border-color: rgba(255,255,255,.7) }
     .cta-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap }
-    .cta-links a { color: rgba(255,255,255,.42); font-size: .84rem; text-decoration: none; transition: color .2s; display: inline-flex; align-items: center; gap: 6px }
+    .cta-links a { color: rgba(255,255,255,.62); font-size: .84rem; text-decoration: none; transition: color .2s; display: inline-flex; align-items: center; gap: 6px }
     .cta-links a:hover { color: rgba(255,255,255,.8) }
     .cta-links a svg { width: 14px; height: 14px }
 
@@ -1067,10 +1096,16 @@
     @media(max-width:960px){
       nav { padding: 0 24px }
 
-      /* Hero: single column, hide photo */
-      .hero { grid-template-columns: 1fr }
-      .hero-right { display: none }
-      .hero-left { padding: 100px 32px 72px }
+      /* Hero: single column, photo above text */
+      .hero { grid-template-columns: 1fr; grid-template-rows: 42vh auto }
+      .hero-right {
+        order: -1;          /* photo first, text below */
+        height: 42vh;
+        min-height: 240px;
+        max-height: 380px;
+      }
+      .hero-badge { display: none }   /* badge clutters the small photo */
+      .hero-left { padding: 48px 24px 64px }
 
       /* Two-col layouts → single */
       .pain-inner       { grid-template-columns: 1fr; gap: 48px }
@@ -1496,9 +1531,8 @@
     }
     .ex-note {
       margin-top: 40px;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
-      border-left: 3px solid var(--blue-lt);
+      background: rgba(43,123,200,.12);
+      border: 1px solid rgba(74,157,224,.22);
       border-radius: 10px;
       padding: 20px 24px;
     }
@@ -1967,7 +2001,7 @@
         </div>
         <p class="proof-text"><strong>+150 familias</strong> guatemaltecas ya están ahorrando</p>
       </div>
-      <h1>Deja de pagar<br/>de más<br/>por la luz.<br/><em>Instala solar.</em></h1>
+      <h1>Deja de pagar de más por la luz.<br/><em>Instala solar.</em></h1>
       <p class="hero-sub">Tu sistema diseñado con base en tu consumo real. Instalación en 2–3 días. Financiamiento sin enganche disponible.</p>
       <div class="hero-actions">
         <a href="https://wa.me/50230821405?text=Hola,%20quiero%20mi%20cotización%20gratis%20de%20energía%20solar" target="_blank" class="btn-primary">
@@ -2236,7 +2270,7 @@
       <div class="fin-left">
         <span class="eyebrow" style="color:var(--blue-lt)">Financiamiento</span>
         <h2 class="section-title" style="color:var(--white)">Empieza a ahorrar sin desembolso inicial</h2>
-        <p class="section-lead" style="color:rgba(255,255,255,.55)">Con Neocuotas instala tu sistema solar sin enganche y sin recargo. La cuota mensual puede quedar menor a lo que hoy ya pagas de luz.</p>
+        <p class="section-lead" style="color:rgba(255,255,255,.72)">Con Neocuotas instala tu sistema solar sin enganche y sin recargo. La cuota mensual puede quedar menor a lo que hoy ya pagas de luz.</p>
         <div class="fin-highlight">
           <p>La cuota del sistema puede quedar <strong>menor</strong> a lo que ya pagas de luz — ahorro real desde el primer mes.</p>
         </div>
@@ -2289,7 +2323,7 @@
     <div style="margin-bottom:48px">
       <span class="eyebrow" style="color:var(--blue-lt)">Clientes verificados</span>
       <h2 class="section-title" style="color:var(--white)">+150 familias guatemaltecas ya están ahorrando</h2>
-      <p class="section-lead" style="color:rgba(255,255,255,.5);max-width:480px">Historias reales. Ahorros reales. Familias que tomaron la decisión y no volvieron a mirar atrás.</p>
+      <p class="section-lead" style="color:rgba(255,255,255,.72);max-width:480px">Historias reales. Ahorros reales. Familias que tomaron la decisión y no volvieron a mirar atrás.</p>
     </div>
     <div class="testi-grid reveal-stagger">
       <div class="t-card">
@@ -2417,7 +2451,7 @@
       <div class="trust-text">
         <span class="eyebrow" style="color:var(--blue-lt)">Por qué SolarDepot</span>
         <h2 class="section-title" style="color:var(--white)">Una empresa que sabe lo que hace. Y lo demuestra.</h2>
-        <p class="section-lead" style="color:rgba(255,255,255,.55)">No somos intermediarios. Somos especialistas en energía solar residencial con experiencia real en instalaciones en Guatemala.</p>
+        <p class="section-lead" style="color:rgba(255,255,255,.72)">No somos intermediarios. Somos especialistas en energía solar residencial con experiencia real en instalaciones en Guatemala.</p>
       </div>
       <div class="trust-list">
         <div class="trust-item">
@@ -2543,7 +2577,7 @@
     <div class="ex-header">
       <span class="eyebrow" style="color:var(--blue-lt)">Cómo funciona el ahorro</span>
       <h2 class="section-title" style="color:var(--white)">¿Qué pasa con la energía que no usas?</h2>
-      <p class="section-lead" style="color:rgba(255,255,255,.52);max-width:520px">Tu sistema solar no desperdicia nada. Cada kilovatio que produces pero no consumes trabaja a tu favor.</p>
+      <p class="section-lead" style="color:rgba(255,255,255,.72);max-width:520px">Tu sistema solar no desperdicia nada. Cada kilovatio que produces pero no consumes trabaja a tu favor.</p>
     </div>
     <div class="ex-steps reveal-stagger">
       <div class="ex-item">
@@ -2589,7 +2623,7 @@
     <div style="max-width:520px;margin-bottom:56px">
       <span class="eyebrow" style="color:var(--blue-lt)">El sistema</span>
       <h2 class="section-title" style="color:var(--white)">Diseñado exactamente para tu consumo</h2>
-      <p class="section-lead" style="color:rgba(255,255,255,.52)">Analizamos tu factura y diseñamos el sistema solar perfecto para cubrir el 100% de tu consumo actual.</p>
+      <p class="section-lead" style="color:rgba(255,255,255,.72)">Analizamos tu factura y diseñamos el sistema solar perfecto para cubrir el 100% de tu consumo actual.</p>
     </div>
     <div class="specs-grid reveal-stagger">
       <div class="sp-item">
