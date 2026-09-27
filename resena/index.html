@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Déjanos tu reseña · SolarDepot Guatemala</title>
+  <meta name="description" content="¿Cómo fue tu experiencia con SolarDepot? Déjanos tu reseña en Google, toma un minuto."/>
+  <meta name="robots" content="noindex,nofollow"/>
+  <link rel="canonical" href="https://www.solardepotgt.com/resena/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="es_GT"/>
+  <meta property="og:site_name" content="SolarDepot Guatemala"/>
+  <meta property="og:title" content="¿Cómo fue tu experiencia con SolarDepot?"/>
+  <meta property="og:description" content="Déjanos tu reseña en Google. Toma un minuto y ayuda a más familias a decidirse ☀️"/>
+  <meta property="og:url" content="https://www.solardepotgt.com/resena/"/>
+  <meta property="og:image" content="https://www.solardepotgt.com/resena/resena-og.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="¿Cómo fue tu experiencia con SolarDepot?"/>
+  <meta name="twitter:description" content="Déjanos tu reseña en Google. Toma un minuto."/>
+  <meta name="twitter:image" content="https://www.solardepotgt.com/resena/resena-og.png"/>
+  <style>
+    body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#112448,#1B3A6B);font-family:'Open Sans',Arial,sans-serif;color:#fff;text-align:center;padding:24px;box-sizing:border-box}
+    .card{max-width:420px}
+    .brand{font-family:Montserrat,Arial,sans-serif;font-weight:900;font-size:1.6rem;letter-spacing:4px}
+    .brand span{color:#E8541A}
+    .stars{font-size:2.4rem;color:#FBBF24;letter-spacing:4px;margin:28px 0 12px}
+    h1{font-family:Montserrat,Arial,sans-serif;font-size:1.5rem;margin:0 0 10px}
+    p{color:rgba(255,255,255,.7);line-height:1.6;margin:0 0 28px}
+    a.btn{display:inline-block;background:#E8541A;color:#fff;text-decoration:none;font-weight:700;padding:16px 36px;border-radius:12px;font-size:1.05rem}
+    small{display:block;margin-top:18px;color:rgba(255,255,255,.4);font-size:.8rem}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="https://comercializagt-sys.github.io/solardepot-web/logo-sd.png" alt="SolarDepot Guatemala" style="height:56px;width:auto"/>
+    <div class="stars">★★★★★</div>
+    <h1>¿Cómo fue tu experiencia?</h1>
+    <p>Te estamos llevando a Google para que dejes tu reseña. Toma un minuto y ayuda a más familias a decidirse.</p>
+    <a class="btn" id="go" href="https://search.google.com/local/writereview?placeid=ChIJ9xyOzAImfqsRkoHqILN7hL8">Dejar mi reseña →</a>
+    <small>Si no te redirige en unos segundos, toca el botón.</small>
+  </div>
+  <script>
+    // Redirección automática (los rastreadores de WhatsApp/Facebook no ejecutan JS, así que leen la vista previa; las personas sí son redirigidas)
+    setTimeout(function(){ window.location.replace(document.getElementById('go').href); }, 600);
+  </script>
+</body>
+</html>
